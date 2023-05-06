@@ -47,24 +47,14 @@ namespace SteamReviews
 			this.label4 = new System.Windows.Forms.Label();
 			this.button8 = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox7 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.textBox12 = new System.Windows.Forms.TextBox();
-			this.textBox13 = new System.Windows.Forms.TextBox();
-			this.textBox14 = new System.Windows.Forms.TextBox();
-			this.textBox15 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
+			this.button9 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
+			this.button11 = new System.Windows.Forms.Button();
+			this.button12 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button2
@@ -258,197 +248,97 @@ namespace SteamReviews
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(354, 278);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(132, 23);
-			this.textBox4.TabIndex = 19;
-			this.textBox4.Text = "gerardinasimonettikub@rambler.ru";
-			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-			// 
-			// textBox5
-			// 
-			this.textBox5.Location = new System.Drawing.Point(354, 307);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(132, 23);
-			this.textBox5.TabIndex = 20;
-			this.textBox5.Text = "wfCF6MXYjC";
-			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(354, 364);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(132, 23);
-			this.textBox6.TabIndex = 21;
-			this.textBox6.Text = "herthagrafbpv@rambler.ru";
-			this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
-			// 
-			// textBox7
-			// 
-			this.textBox7.Location = new System.Drawing.Point(354, 393);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(132, 23);
-			this.textBox7.TabIndex = 22;
-			this.textBox7.Text = "1G9SZCgBRp";
-			this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
-			// 
-			// textBox8
-			// 
-			this.textBox8.Location = new System.Drawing.Point(544, 278);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(132, 23);
-			this.textBox8.TabIndex = 23;
-			this.textBox8.Text = "bengtssonjanolofiae@rambler.ru";
-			this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
-			// 
-			// textBox9
-			// 
-			this.textBox9.Location = new System.Drawing.Point(544, 307);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(132, 23);
-			this.textBox9.TabIndex = 24;
-			this.textBox9.Text = "PZui8QhVMy";
-			this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-			// 
-			// textBox10
-			// 
-			this.textBox10.Location = new System.Drawing.Point(544, 364);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(132, 23);
-			this.textBox10.TabIndex = 25;
-			this.textBox10.Text = "mendozaangelesptw@rambler.ru";
-			this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-			// 
-			// textBox11
-			// 
-			this.textBox11.Location = new System.Drawing.Point(544, 393);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(132, 23);
-			this.textBox11.TabIndex = 26;
-			this.textBox11.Text = "1VVDaNG5kO";
-			this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
-			// 
-			// textBox12
-			// 
-			this.textBox12.Location = new System.Drawing.Point(732, 307);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(132, 23);
-			this.textBox12.TabIndex = 28;
-			this.textBox12.Text = "EjzqoV5IEz";
-			this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
-			// 
-			// textBox13
-			// 
-			this.textBox13.Location = new System.Drawing.Point(732, 278);
-			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(132, 23);
-			this.textBox13.TabIndex = 27;
-			this.textBox13.Text = "normanedwincgi@rambler.ru";
-			this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-			// 
-			// textBox14
-			// 
-			this.textBox14.Location = new System.Drawing.Point(732, 393);
-			this.textBox14.Name = "textBox14";
-			this.textBox14.Size = new System.Drawing.Size(132, 23);
-			this.textBox14.TabIndex = 30;
-			this.textBox14.Text = "54nsG6g8jh";
-			this.textBox14.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
-			// 
-			// textBox15
-			// 
-			this.textBox15.Location = new System.Drawing.Point(732, 364);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.Size = new System.Drawing.Size(132, 23);
-			this.textBox15.TabIndex = 29;
-			this.textBox15.Text = "santosrosarbz@rambler.ru";
-			this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
-			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(354, 260);
+			this.label6.Location = new System.Drawing.Point(188, 327);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(38, 15);
 			this.label6.TabIndex = 31;
 			this.label6.Text = "label6";
 			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(755, 205);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(38, 15);
+			this.label5.TabIndex = 32;
+			this.label5.Text = "label5";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(617, 205);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(132, 23);
+			this.textBox4.TabIndex = 33;
+			this.textBox4.Text = "https://www.youtube.com/watch?v=s1PGBhGK9WY";
+			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(354, 346);
+			this.label7.Location = new System.Drawing.Point(617, 187);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(38, 15);
-			this.label7.TabIndex = 32;
-			this.label7.Text = "label7";
+			this.label7.Size = new System.Drawing.Size(40, 15);
+			this.label7.TabIndex = 34;
+			this.label7.Text = "Видео";
 			this.label7.Click += new System.EventHandler(this.label7_Click);
 			// 
-			// label8
+			// button9
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(544, 260);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(38, 15);
-			this.label8.TabIndex = 33;
-			this.label8.Text = "label8";
-			this.label8.Click += new System.EventHandler(this.label8_Click);
+			this.button9.Location = new System.Drawing.Point(479, 205);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(132, 43);
+			this.button9.TabIndex = 35;
+			this.button9.Text = "Старт";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.button9_Click);
 			// 
-			// label9
+			// button10
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(544, 346);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(38, 15);
-			this.label9.TabIndex = 34;
-			this.label9.Text = "label9";
-			this.label9.Click += new System.EventHandler(this.label9_Click);
+			this.button10.Location = new System.Drawing.Point(479, 303);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(132, 43);
+			this.button10.TabIndex = 36;
+			this.button10.Text = "Сделать токены";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
-			// label10
+			// button11
 			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(732, 260);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(44, 15);
-			this.label10.TabIndex = 35;
-			this.label10.Text = "label10";
-			this.label10.Click += new System.EventHandler(this.label10_Click);
+			this.button11.Location = new System.Drawing.Point(479, 352);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(132, 43);
+			this.button11.TabIndex = 37;
+			this.button11.Text = "Логинизация";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
-			// label11
+			// button12
 			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(732, 346);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(44, 15);
-			this.label11.TabIndex = 36;
-			this.label11.Text = "label11";
-			this.label11.Click += new System.EventHandler(this.label11_Click);
+			this.button12.Location = new System.Drawing.Point(479, 254);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(132, 43);
+			this.button12.TabIndex = 38;
+			this.button12.Text = "Спам";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(970, 450);
-			this.Controls.Add(this.label11);
-			this.Controls.Add(this.label10);
-			this.Controls.Add(this.label9);
-			this.Controls.Add(this.label8);
+			this.Controls.Add(this.button12);
+			this.Controls.Add(this.button11);
+			this.Controls.Add(this.button10);
+			this.Controls.Add(this.button9);
 			this.Controls.Add(this.label7);
-			this.Controls.Add(this.label6);
-			this.Controls.Add(this.textBox14);
-			this.Controls.Add(this.textBox15);
-			this.Controls.Add(this.textBox12);
-			this.Controls.Add(this.textBox13);
-			this.Controls.Add(this.textBox11);
-			this.Controls.Add(this.textBox10);
-			this.Controls.Add(this.textBox9);
-			this.Controls.Add(this.textBox8);
-			this.Controls.Add(this.textBox7);
-			this.Controls.Add(this.textBox6);
-			this.Controls.Add(this.textBox5);
 			this.Controls.Add(this.textBox4);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.button8);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label4);
@@ -493,24 +383,14 @@ namespace SteamReviews
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.TextBox textBox5;
-		private System.Windows.Forms.TextBox textBox6;
-		private System.Windows.Forms.TextBox textBox7;
-		private System.Windows.Forms.TextBox textBox8;
-		private System.Windows.Forms.TextBox textBox9;
-		private System.Windows.Forms.TextBox textBox10;
-		private System.Windows.Forms.TextBox textBox11;
-		private System.Windows.Forms.TextBox textBox12;
-		private System.Windows.Forms.TextBox textBox13;
-		private System.Windows.Forms.TextBox textBox14;
-		private System.Windows.Forms.TextBox textBox15;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Button button9;
+		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button12;
 	}
 }
 
