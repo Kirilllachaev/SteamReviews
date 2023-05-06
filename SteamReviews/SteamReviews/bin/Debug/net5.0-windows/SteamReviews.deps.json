@@ -1,0 +1,78 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "SteamReviews/1.0.0": {
+        "dependencies": {
+          "Microsoft.Edge.SeleniumTools": "3.141.3",
+          "Selenium.WebDriver": "4.8.0"
+        },
+        "runtime": {
+          "SteamReviews.dll": {}
+        }
+      },
+      "Microsoft.Edge.SeleniumTools/3.141.3": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.8.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Edge.SeleniumTools.dll": {
+            "assemblyVersion": "3.141.3.0",
+            "fileVersion": "3.141.3.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.8.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SteamReviews/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Edge.SeleniumTools/3.141.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t20ScE4OHq7dTSU4NS4nhELJPppq7MI8bR8qvDkbfWw/bbh2BBLBBmAruJ0rARxYAT4xvBqud/ORauXfF3LpkQ==",
+      "path": "microsoft.edge.seleniumtools/3.141.3",
+      "hashPath": "microsoft.edge.seleniumtools.3.141.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "Selenium.WebDriver/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-12/UPRx8JHOKnQTW4vTeLT+gkMPF/2RJFbGn6rGLj9NBffd62PdXYoFTWFeOwywSfNpWcJVyjzk9MXoJjrA0Ww==",
+      "path": "selenium.webdriver/4.8.0",
+      "hashPath": "selenium.webdriver.4.8.0.nupkg.sha512"
+    }
+  }
+}

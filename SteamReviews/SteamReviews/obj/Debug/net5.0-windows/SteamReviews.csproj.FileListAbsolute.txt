@@ -1,0 +1,49 @@
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\linux\selenium-manager
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\macos\selenium-manager
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.exe
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.deps.json
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.runtimeconfig.json
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.runtimeconfig.dev.json
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\ref\SteamReviews.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.pdb
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\WebDriver.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.AssemblyReference.cache
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.Form1.resources
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.GenerateResource.cache
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.AssemblyInfoInputs.cache
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.AssemblyInfo.cs
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.CoreCompileInputs.cache
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.CopyComplete
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\ref\SteamReviews.dll
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.pdb
+C:\Users\73961\Documents\Visual Studio 2019\Projects\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.genruntimeconfig.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\linux\selenium-manager
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\macos\selenium-manager
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.exe
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.deps.json
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.runtimeconfig.json
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.runtimeconfig.dev.json
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\ref\SteamReviews.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\SteamReviews.pdb
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\WebDriver.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.Form1.resources
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.GenerateResource.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.AssemblyInfoInputs.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.AssemblyInfo.cs
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.CoreCompileInputs.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.CopyComplete
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\ref\SteamReviews.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.pdb
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.genruntimeconfig.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.AssemblyReference.cache
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\Microsoft.Edge.SeleniumTools.dll
