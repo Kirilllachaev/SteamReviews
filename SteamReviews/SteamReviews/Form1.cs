@@ -350,7 +350,7 @@ namespace SteamReviews
 			public string nomination = "";
 			public string working = "";
 			public Thread YTThread = null;
-			public FirefoxDriver YTDriver = null;
+			public ChromeDriver YTDriver = null;
 		
 		}
 
@@ -361,8 +361,8 @@ namespace SteamReviews
 		string YTMessageText = "";
 		public int Replies;
 
-		public FirefoxDriverService YToptions;
-		public FirefoxOptions Yoptions;
+		//public FirefoxDriverService YToptions;
+		//public FirefoxOptions Yoptions;
 
 
 		private void button9_Click(object sender, EventArgs e)
@@ -477,8 +477,8 @@ namespace SteamReviews
 			//YToptions.AddArgument("user-data-dir=C:\\Users\\73961\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
 			//YToptions.Arguments.R
 
-			YToptions = FirefoxDriverService.CreateDefaultService(@"C:\FireFoxDriver\geckodriver.exe");
-			Yoptions = new FirefoxOptions();
+			//YToptions = FirefoxDriverService.CreateDefaultService(@"C:\FireFoxDriver\geckodriver.exe");
+		//	Yoptions = new FirefoxOptions();
 
 
 			GetTokens();
@@ -507,7 +507,7 @@ namespace SteamReviews
 				DD.YTDriver.Quit();
 			
 
-				DD.YTDriver = new FirefoxDriver(YToptions, Yoptions);
+				DD.YTDriver = new ChromeDriver();
 				DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
 
 				Thread.Sleep(5000);
@@ -595,7 +595,7 @@ namespace SteamReviews
 		
 
 			
-				DD.YTDriver = new FirefoxDriver();
+				DD.YTDriver = new ChromeDriver();
 				DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
 
 
