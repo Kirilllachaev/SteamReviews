@@ -17,6 +17,7 @@ using OpenQA.Selenium.Interactions;
 using System.Threading;
 using System.Collections.ObjectModel;
 using System.IO;
+using OpenQA.Selenium.Remote;
 
 namespace SteamReviews
 {
@@ -350,7 +351,7 @@ namespace SteamReviews
 			public string nomination = "";
 			public string working = "";
 			public Thread YTThread = null;
-			public ChromeDriver YTDriver = null;
+			public IWebDriver YTDriver = null;
 		
 		}
 
@@ -362,7 +363,7 @@ namespace SteamReviews
 		public int Replies;
 
 		//public FirefoxDriverService YToptions;
-		//public FirefoxOptions Yoptions;
+		public ChromeOptions YToptions = new ChromeOptions();
 
 
 		private void button9_Click(object sender, EventArgs e)
@@ -474,11 +475,8 @@ namespace SteamReviews
 
 		public bool CheckAccounts()
 		{
-			//YToptions.AddArgument("user-data-dir=C:\\Users\\73961\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
-			//YToptions.Arguments.R
-
-			//YToptions = FirefoxDriverService.CreateDefaultService(@"C:\FireFoxDriver\geckodriver.exe");
-		//	Yoptions = new FirefoxOptions();
+			YToptions.AddArgument("user-data-dir=C:\\Users\\73961\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
+		
 
 
 			GetTokens();
@@ -505,45 +503,62 @@ namespace SteamReviews
 
 			if (DD.YTDriver != null)
 				DD.YTDriver.Quit();
-			
 
-				DD.YTDriver = new ChromeDriver();
-				DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
+			DD.YTDriver = new ChromeDriver(YToptions);
 
-				Thread.Sleep(5000);
+			//ChromeOptions options = new ChromeOptions();
+			//options.DebuggerAddress = "127.0.0.1:1234"; // адрес отладчика Chrome
+			//DD.YTDriver = new RemoteWebDriver(new Uri("http://localhost:1234/wd/hub"), options.ToCapabilities());
 
-				IWebElement LoginArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-				LoginArea.SendKeys(DD.Log);
-
-				IWebElement ButtonAreaLogin = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-				ButtonAreaLogin.Click();
-
-				Thread.Sleep(5000);
+			DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
 
 
-				IWebElement PassArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-				PassArea.SendKeys(DD.pas);
+			//DD.YTDriver.Navigate().GoToUrl("file:///C:/Users/73961/Desktop/fdsf.html");
+			Thread.Sleep(5000);
 
-				IWebElement ButtonAreaPass = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-				ButtonAreaPass.Click();
-				Thread.Sleep(8000);
-			
-			
+			IWebElement ButtonGoogle = DD.YTDriver.FindElement(By.CssSelector("[data-oauthserver='https://accounts.google.com/o/oauth2/auth']"));
+			ButtonGoogle.Click();
 
-			IWebElement Error = DD.YTDriver.FindElement(By.ClassName("ahT6S"));
-			IWebElement Error1 = DD.YTDriver.FindElement(By.ClassName("glT6eb"));
 
-			Thread.Sleep(500);
+			Thread.Sleep(5000);
 
-			if(Error != null || Error1 != null)
+			IWebElement LoginArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
+			LoginArea.SendKeys(DD.Log);
+
+			IWebElement ButtonAreaLogin = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
+			ButtonAreaLogin.Click();
+
+			Thread.Sleep(5000);
+
+
+			IWebElement PassArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
+			PassArea.SendKeys(DD.pas);
+
+			IWebElement ButtonAreaPass = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
+			ButtonAreaPass.Click();
+			Thread.Sleep(8000);
+
+
+
+			try
 			{
+				IWebElement Error = DD.YTDriver.FindElement(By.ClassName("ahT6S"));
 				DD.working = "No";
 			}
-			else
+			catch
 			{
-				DD.working = "Working";
+				try
+				{
+					IWebElement Error1 = DD.YTDriver.FindElement(By.ClassName("glT6eb"));
+					DD.working = "No";
+				}
+				catch
+				{
+					DD.working = "Working";
+				}
 			}
 
+			Thread.Sleep(500);
 			SetTokens();
 
 			return true;
