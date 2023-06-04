@@ -46,6 +46,9 @@ namespace SteamReviews
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// button2
@@ -60,7 +63,7 @@ namespace SteamReviews
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(188, 151);
+			this.button3.Location = new System.Drawing.Point(188, 200);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(132, 43);
 			this.button3.TabIndex = 2;
@@ -154,7 +157,7 @@ namespace SteamReviews
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(132, 23);
 			this.textBox1.TabIndex = 9;
-			this.textBox1.Text = "https://steamcommunity.com/app/361420/positivereviews/";
+			this.textBox1.Text = "https://steamcommunity.com/app/227860/positivereviews/";
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// label2
@@ -182,7 +185,7 @@ namespace SteamReviews
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(132, 23);
 			this.textBox2.TabIndex = 12;
-			this.textBox2.Text = "ASTRONEER";
+			this.textBox2.Text = "CastleStory";
 			this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
 			// 
 			// timer1
@@ -231,11 +234,42 @@ namespace SteamReviews
 			this.label6.Text = "Closed";
 			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(188, 151);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(132, 43);
+			this.button6.TabIndex = 40;
+			this.button6.Text = "Удалить коммы";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click_1);
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(341, 171);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(132, 23);
+			this.textBox3.TabIndex = 41;
+			this.textBox3.Text = "72724614";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(341, 147);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(47, 15);
+			this.label7.TabIndex = 42;
+			this.label7.Text = "Deleted";
+			this.label7.Click += new System.EventHandler(this.label7_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(970, 450);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.button6);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
@@ -278,6 +312,9 @@ namespace SteamReviews
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.Label label7;
 	}
 }
 

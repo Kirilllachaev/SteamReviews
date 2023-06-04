@@ -162,6 +162,7 @@ namespace SteamReviews
 			int count = 0;
 			int spammed = 0;
 			int closed = 0;
+			int deleted = 0;
 			foreach (ReviewLang RL in gamePage.ReviewLangs)
 			{
 				foreach (string L in RL.Links)
@@ -175,11 +176,16 @@ namespace SteamReviews
 					{
 						closed += 1;
 					}
+					if (L.Contains("?donskdel"))
+					{
+						deleted += 1;
+					}
 				}
 			}
 			label4.Text = count.ToString();
 			label5.Text = spammed.ToString();
 			label6.Text = closed.ToString();
+			label7.Text = deleted.ToString();
 
 		}
 
@@ -271,12 +277,45 @@ namespace SteamReviews
 
 			spamstarted = true;
 
-			SpamThread = new Thread(() => SteamSpaming());
-			SpamThread.Start();
-
+			//SpamThread = new Thread(() => SteamSpaming());
+			//SpamThread.Start();
+			SteamSpaming();
 
 
 		}
+
+		Dictionary<string, string> translations = new Dictionary<string, string>()
+		{
+			{"italian", "Ciao!\nStiamo sviluppando un gioco simile.\nForse ti piacerà anche :)\nSe sì, aggiungilo alla tua lista dei desideri e unisciti al nostro server Discord!\nGrazie!"},
+			{"polish", "Cześć!\nRozwijamy podobną grę.\nByć może również Ci się spodoba :)\nJeśli tak, dodaj ją do swojej listy życzeń i dołącz do naszego serwera Discord!\nDziękujemy!"},
+			{"schinese", "你好！\n我们正在开发类似的游戏。\n也许你也会喜欢它 :)\n如果是这样，请将其添加到您的愿望清单中并加入我们的Discord服务器！\n谢谢！"},
+			{"tchinese", "你好！\n我們正在開發類似的遊戲。\n也許你也會喜歡它 :)\n如果是這樣，請將其添加到您的願望清單中並加入我們的Discord伺服器！\n謝謝！"},
+			{"japanese", "こんにちは！\n私たちは似たようなゲームを開発しています。\nもしかしたら気に入るかもしれません :)\nもしそうなら、ぜひウィッシュリストに追加して、私たちのDiscordサーバーに参加してください！\nありがとうございます！"},
+			{"koreana", "안녕하세요!\n비슷한 게임을 개발하고 있습니다.\n아마도 마음에 드실 것입니다 :)\n그렇다면, 찜 목록에 추가하고 Discord 서버에 참여해주세요!\n감사합니다!"},
+			{"thai", "สวัสดีครับ!\nเรากำลังพัฒนาเกมที่คล้ายกันนี้\nอาจจะชอบกันเช่นกัน :)\nถ้าใช่ กรุณาเพิ่มลงในรายการที่คุณต้องการและเข้าร่วมเซิร์ฟเวอร์ Discord ของเรา!\nขอบคุณครับ!"},
+			{"bulgarian", "Здравейте!\nРазработваме подобна игра.\nВозможно, ще ви хареса :)\nАко да, моля, добавете я във вашите желания и се присъединете към нашия Discord сървър!\nБлагодарим ви!"},
+			{"czech", "Ahoj!\nVyvíjíme podobnou hru.\nMožná se vám bude líbit taky :)\nPokud ano, přidejte ji do svého seznamu přání a připojte se k našemu serveru Discord!\nDěkujeme!"},
+			{"danish", "Hej!\nVi udvikler et lignende spil.\nMåske vil du også kunne lide det :)\nHvis ja, tilføj det til din ønskeliste og join vores Discord-server!\nTak!"},
+			{"german", "Hallo!\nWir entwickeln ein ähnliches Spiel.\nVielleicht gefällt es Ihnen auch :)\nWenn ja, fügen Sie es bitte zu Ihrer Wunschliste hinzu und treten Sie unserem Discord-Server bei!\nVielen Dank!"},
+			{"english", "Hello!\nWe are developing a similar game.\nMaybe you will like it too :)\nIf so, please add it to your wishlist and join our Discord server!\nThank you!"},
+			{"spanish", "¡Hola!\nEstamos desarrollando un juego similar.\nTal vez también te guste :)\nSi es así, por favor, ¡añádelo a tu lista de deseos y únete a nuestro servidor Discord!\n¡Gracias!"},
+			{"latam", "¡Hola!\nEstamos desarrollando un juego similar.\nTal vez también te guste :)\nSi es así, por favor, ¡añádelo a tu lista de deseos y únete a nuestro servidor Discord!\n¡Gracias!"},
+			{"greek", "Γεια σου!\nΑναπτύσσουμε ένα παρόμοιο παιχνίδι.\nΊσως σου αρέσει επίσης :)\nΑν ναι, προσθέστε το στη λίστα επιθυμιών σας και ελάτε στον διακομιστή Discord μας!\nΣας ευχαριστώ!"},
+			{"french", "Salut !\nNous développons un jeu similaire.\nPeut-être que ça vous plaira aussi :)\nSi oui, ajoutez-le à votre liste de souhaits et rejoignez notre serveur Discord !\nMerci !"},
+			{"hungarian", "Szia!\nHasonló játékot fejlesztünk.\nLehet, hogy neked is tetszeni fog :)\nHa igen, add hozzá a kívánságlistádhoz, és csatlakozz a Discord szerverünkhöz!\nKöszönjük!"},
+			{"dutch", "Hallo!\nWe zijn bezig met de ontwikkeling van een vergelijkbare game.\nMisschien vind je het ook leuk :)\nVoeg het toe aan je verlanglijst en sluit je aan bij onze Discord-server!\nBedankt!"},
+			{"norwegian", "Hei!\nVi utvikler et lignende spill.\nKanskje du også vil like det :)\nHvis ja, vennligst legg det til i ønskelisten din og bli med på vår Discord-server!\nTakk!"},
+			{"portuguese", "Olá!\nEstamos desenvolvendo um jogo semelhante.\nTalvez você também goste :)\nSe sim, adicione-o à sua lista de desejos e junte-se ao nosso servidor Discord!\nObrigado!"},
+			{"brazilian", "Olá!\nEstamos desenvolvendo um jogo similar.\nTalvez você também goste :)\nSe sim, adicione-o à sua lista de desejos e junte-se ao nosso servidor Discord!\nObrigado!"},
+			{"romanian", "Salut!\nDezvoltăm un joc similar.\nPoate îți va plăcea și ție :)\nDacă da, te rugăm să-l adaugi în lista ta de dorințe și să te alături serverului nostru Discord!\nMulțumim!"},
+			{"russian", "Привет!\nМы разрабатываем похожую игру.\nВозможно, она вам тоже понравится :)\nЕсли да, добавьте её в свой список желаемого и присоединяйтесь к нашему серверу Discord!\nСпасибо!"},
+			{"finnish", "Hei!\nKehitämme samankaltaista peliä.\nSaattaisit pitää siitä myös :)\nJos näin on, lisää se toivelistaasi ja liity Discord-palvelimeemme!\nKiitos!"},
+			{"swedish", "Hej!\nVi utvecklar ett liknande spel.\nKanske kommer du också tycka om det :)\nOm så är fallet, lägg till det på din önskelista och anslut till vår Discord-server!\nTack!"},
+			{"turkish", "Merhaba!\nBenzer bir oyun geliştiriyoruz.\nBelki de size de hoş gelebilir :)\nEğer öyleyse, lütfen istek listesine ekleyin ve Discord sunucumuza katılın!\nTeşekkür ederiz!"},
+			{"vietnamese", "Xin chào!\nChúng tôi đang phát triển một trò chơi tương tự.\nCó thể bạn cũng thích nó :)\nNếu vậy, hãy thêm nó vào danh sách mong muốn của bạn và tham gia máy chủ Discord của chúng tôi!\nCảm ơn bạn!"},
+			{"ukrainian", "Привіт!\nМи розробляємо схожу гру.\nМожливо, вона вам також сподобається :)\nЯкщо так, додайте її до свого списку бажань і приєднуйтеся до нашого серверу Discord!\nДякуємо!"}
+		};
+
 
 		public void SteamSpaming()
 		{
@@ -296,7 +335,8 @@ namespace SteamReviews
 							try
 							{
 								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
-								textarea.SendKeys("This is a sample text.");
+								string text = translations[RL.lang];
+								textarea.SendKeys(text);
 								Thread.Sleep(500);
 								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
 								greenButton.Click();
@@ -394,9 +434,37 @@ namespace SteamReviews
 			while (isScrolling)
 			{
 
-				/*IWebElement end = myDriver.FindElement(By.ClassName("apphub_NoMoreContentText1"));
-				if (end != null)
+				
+
+				((IJavaScriptExecutor)myDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+
+				Thread.Sleep(100);
+
+				IWebElement end = myDriver.FindElement(By.ClassName("apphub_NoMoreContent"));
+
+
+				//IWebElement page = myDriver.FindElement(By.Id("page" + pageNumber.ToString()));
+			
+
+
+				if (end.GetAttribute("style").Contains("opacity: 1;"))
 				{
+
+					ReadOnlyCollection<IWebElement> childElements = myDriver.FindElements(By.ClassName("apphub_Card"));
+					IWebElement[] cards = childElements.ToArray();
+
+					foreach (IWebElement E in cards)
+					{
+						string link = E.GetAttribute("data-modal-content-url");
+						if (!Alllinks.Contains(link))
+						{
+							Alllinks.Add(link);
+						}
+
+					}
+
+
+					// Законченож
 					isScrolling = false;
 
 					if (One)
@@ -404,61 +472,90 @@ namespace SteamReviews
 						MakeOutput(gameName, _selectedLanguage);
 						return;
 					}
+				}
 
-				}*/
 
-				((IJavaScriptExecutor)myDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-
-				Thread.Sleep(100);
 
 				pageNumber += 1;
 				
 
-				try
-				{
-					IWebElement page = myDriver.FindElement(By.Id("page" + pageNumber.ToString()));
-					ReadOnlyCollection<IWebElement> childElements = page.FindElements(By.ClassName("apphub_Card"));
-					IWebElement[] cards = childElements.ToArray();
-
-					foreach (IWebElement E in cards)
-					{
-						string link = E.GetAttribute("data-modal-content-url");
-						Alllinks.Add(link);
-					}
-
-				}
-				catch
-				{
-					try
-					{
-
-						IWebElement page = myDriver.FindElement(By.Id("page" + pageNumber.ToString()));
-						ReadOnlyCollection<IWebElement> childElements = page.FindElements(By.ClassName("apphub_Card"));
-						IWebElement[] cards = childElements.ToArray();
-
-						foreach (IWebElement E in cards)
-						{
-							string link = E.GetAttribute("data-modal-content-url");
-							Alllinks.Add(link);
-						}
-					}
-					catch
-					{
-						isScrolling = false;
-
-						if (One)
-						{
-							MakeOutput(gameName, _selectedLanguage);
-							return;
-						}
-					}
-				}
-			
+				
 
 				Thread.Sleep(1000);
 
 				
 
+			}
+		}
+
+		private void button6_Click_1(object sender, EventArgs e)
+		{
+			// удалить коммы
+			SteamDeleting();
+		}
+
+		public void SteamDeleting()
+		{
+			if (gamePage.ReviewLangs.Count > 0)
+			{
+				foreach (ReviewLang RL in gamePage.ReviewLangs)
+				{
+					for (int i = 0; i < RL.Links.Count; i++)
+					{
+						string L = RL.Links[i];
+						if (L.Contains("?donsk") && !L.Contains("?donskdel"))
+						{
+							driver.Navigate().GoToUrl(L);
+
+							Thread.Sleep(1000);
+
+							IReadOnlyCollection<IWebElement> elements = driver.FindElements(By.ClassName("commentthread_comment"));
+
+							// Создание экземпляра класса Actions
+							Actions actions = new Actions(driver);
+
+							// Применение состояния :hover к каждому найденному элементу
+							foreach (IWebElement element1 in elements)
+							{
+								actions.MoveToElement(element1).Perform();
+							}
+
+							try
+							{
+								IWebElement element = driver.FindElement(By.CssSelector("[data-tooltip-text='Удалить']"));
+								element.Click();
+								RL.Links[RL.Links.IndexOf(L)] += "del";
+							}
+							catch
+							{
+								try
+								{
+									IWebElement element = driver.FindElement(By.CssSelector("[data-tooltip-text='Удалить']"));
+									element.Click();
+									RL.Links[RL.Links.IndexOf(L)] += "del";
+								}
+								catch
+								{
+
+								}
+							}
+
+
+							
+
+							File.WriteAllLines(@"Steam/" + gameName + "/" + gameName + "_" + RL.lang + ".txt", RL.Links);
+							FreshCounts();
+
+
+
+						}
+
+					}
+
+
+
+
+				}
 			}
 		}
 
@@ -1112,6 +1209,11 @@ namespace SteamReviews
 		}
 
 		private void label6_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label7_Click(object sender, EventArgs e)
 		{
 
 		}
