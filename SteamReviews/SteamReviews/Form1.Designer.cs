@@ -41,20 +41,11 @@ namespace SteamReviews
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.button8 = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.button9 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
-			this.button11 = new System.Windows.Forms.Button();
-			this.button12 = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// button2
@@ -163,7 +154,7 @@ namespace SteamReviews
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(132, 23);
 			this.textBox1.TabIndex = 9;
-			this.textBox1.Text = "https://steamcommunity.com/app/361420/reviews/";
+			this.textBox1.Text = "https://steamcommunity.com/app/361420/positivereviews/";
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// label2
@@ -194,111 +185,15 @@ namespace SteamReviews
 			this.textBox2.Text = "ASTRONEER";
 			this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
 			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(39, 376);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(132, 43);
-			this.button6.TabIndex = 14;
-			this.button6.Text = "Завершить";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click_1);
-			// 
-			// button7
-			// 
-			this.button7.Location = new System.Drawing.Point(39, 278);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(132, 43);
-			this.button7.TabIndex = 13;
-			this.button7.Text = "Старт";
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.button7_Click);
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(188, 278);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(132, 23);
-			this.textBox3.TabIndex = 16;
-			this.textBox3.Text = "Astroneer";
-			this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged_1);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(188, 260);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(59, 15);
-			this.label4.TabIndex = 15;
-			this.label4.Text = "Название";
-			// 
-			// button8
-			// 
-			this.button8.Location = new System.Drawing.Point(39, 327);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(132, 43);
-			this.button8.TabIndex = 17;
-			this.button8.Text = "Начать спам";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.button8_Click);
-			// 
 			// timer1
 			// 
 			this.timer1.Enabled = true;
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(188, 327);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(38, 15);
-			this.label6.TabIndex = 31;
-			this.label6.Text = "label6";
-			this.label6.Click += new System.EventHandler(this.label6_Click);
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(755, 205);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(38, 15);
-			this.label5.TabIndex = 32;
-			this.label5.Text = "label5";
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(617, 205);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(132, 23);
-			this.textBox4.TabIndex = 33;
-			this.textBox4.Text = "https://www.youtube.com/watch?v=s1PGBhGK9WY";
-			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(617, 187);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(40, 15);
-			this.label7.TabIndex = 34;
-			this.label7.Text = "Видео";
-			this.label7.Click += new System.EventHandler(this.label7_Click);
-			// 
-			// button9
-			// 
-			this.button9.Location = new System.Drawing.Point(479, 205);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(132, 43);
-			this.button9.TabIndex = 35;
-			this.button9.Text = "Старт";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
-			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(479, 303);
+			this.button10.Location = new System.Drawing.Point(826, 395);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(132, 43);
 			this.button10.TabIndex = 36;
@@ -306,44 +201,45 @@ namespace SteamReviews
 			this.button10.UseVisualStyleBackColor = true;
 			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
-			// button11
+			// label4
 			// 
-			this.button11.Location = new System.Drawing.Point(479, 352);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(132, 43);
-			this.button11.TabIndex = 37;
-			this.button11.Text = "Логинизация";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(341, 102);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(43, 15);
+			this.label4.TabIndex = 37;
+			this.label4.Text = "Count:";
+			this.label4.Click += new System.EventHandler(this.label4_Click);
 			// 
-			// button12
+			// label5
 			// 
-			this.button12.Location = new System.Drawing.Point(479, 254);
-			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(132, 43);
-			this.button12.TabIndex = 38;
-			this.button12.Text = "Спам";
-			this.button12.UseVisualStyleBackColor = true;
-			this.button12.Click += new System.EventHandler(this.button12_Click);
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(341, 117);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(64, 15);
+			this.label5.TabIndex = 38;
+			this.label5.Text = "Spammed:";
+			this.label5.Click += new System.EventHandler(this.label5_Click_1);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(341, 132);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(43, 15);
+			this.label6.TabIndex = 39;
+			this.label6.Text = "Closed";
+			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(970, 450);
-			this.Controls.Add(this.button12);
-			this.Controls.Add(this.button11);
-			this.Controls.Add(this.button10);
-			this.Controls.Add(this.button9);
-			this.Controls.Add(this.label7);
-			this.Controls.Add(this.textBox4);
-			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.button8);
-			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.button6);
-			this.Controls.Add(this.button7);
+			this.Controls.Add(this.button10);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
@@ -377,20 +273,11 @@ namespace SteamReviews
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.Button button6;
-		private System.Windows.Forms.Button button7;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Button button10;
-		private System.Windows.Forms.Button button11;
-		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
 	}
 }
 

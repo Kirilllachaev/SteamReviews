@@ -54,6 +54,8 @@ namespace SteamReviews
 		Thread ScrollingThread = null;
 		Thread MultipleLangsThread = null;
 
+		Thread SpamThread = null;
+
 		public int pageNumber = 0;
 
 		public List<string> Alllinks = new List<string>();
@@ -69,6 +71,8 @@ namespace SteamReviews
 		public string linksFile = "";
 
 		public int allLinkCount = 0;
+		public GamePage gamePage;
+
 
 
 		#region Steam
@@ -82,6 +86,70 @@ namespace SteamReviews
 			driver = new ChromeDriver();
 			driver.Navigate().GoToUrl("https://steamcommunity.com/login/home/");
 
+			gameName = textBox2.Text;
+			gameLink = textBox1.Text;
+
+			//
+			getReviews();
+
+
+
+		}
+
+		public void getReviews()
+		{
+
+			GamePage GP = new GamePage();
+			GP.gameName = gameName;
+			GP.ReviewLangs = new List<ReviewLang>();
+			int count = 0;
+			int spammed = 0;
+			int closed = 0;
+
+			try
+			{
+				string[] txtFiles = Directory.GetFiles(@"Steam/" + gameName, "*.txt");
+
+				foreach (string filePath in txtFiles)
+				{
+					string fileName = Path.GetFileName(filePath);
+					ReviewLang RL = new ReviewLang();
+					RL.lang = fileName.Split('_')[1].Split('.')[0];
+					RL.Links = new List<string>();
+
+					string[] lines = File.ReadAllLines(filePath);
+	
+					foreach (string line in lines)
+					{				
+						
+						count += 1;
+						if (line.Contains("?donsk"))
+						{
+							spammed += 1;
+						}
+						if (line.Contains("?closed"))
+						{
+							closed += 1;
+						}
+						RL.Links.Add(line);
+					}
+					GP.ReviewLangs.Add(RL);
+
+				}
+				label4.Text = count.ToString();
+				label5.Text = spammed.ToString();
+				label6.Text = closed.ToString();
+			}
+			catch (DirectoryNotFoundException)
+			{
+				Console.WriteLine("Указанная папка не найдена.");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Произошла ошибка: " + ex.Message);
+			}
+			gamePage = GP;
+
 
 
 
@@ -89,7 +157,31 @@ namespace SteamReviews
 
 
 
+		public void FreshCounts()
+		{
+			int count = 0;
+			int spammed = 0;
+			int closed = 0;
+			foreach (ReviewLang RL in gamePage.ReviewLangs)
+			{
+				foreach (string L in RL.Links)
+				{
+					count += 1;
+					if (L.Contains("?donsk"))
+					{
+						spammed += 1;
+					}
+					if (L.Contains("?closed"))
+					{
+						closed += 1;
+					}
+				}
+			}
+			label4.Text = count.ToString();
+			label5.Text = spammed.ToString();
+			label6.Text = closed.ToString();
 
+		}
 
 
 
@@ -97,8 +189,7 @@ namespace SteamReviews
 		private void button2_Click(object sender, EventArgs e)
 		{
 
-			gameName = textBox2.Text;
-			gameLink = textBox1.Text;
+		
 
 
 			if (selectedLanguage == "all")
@@ -171,15 +262,68 @@ namespace SteamReviews
 			Application.Exit();
 		}
 
-
+		bool spamstarted = false;
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-			IWebElement textarea = driver.FindElement(By.TagName("textarea"));
-			textarea.SendKeys("This is a sample text.");
+			if (spamstarted)
+				return;
 
-			IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
-			greenButton.Click();
+			spamstarted = true;
+
+			SpamThread = new Thread(() => SteamSpaming());
+			SpamThread.Start();
+
+
+
+		}
+
+		public void SteamSpaming()
+		{
+			if (gamePage.ReviewLangs.Count > 0)
+			{
+				foreach (ReviewLang RL in gamePage.ReviewLangs)
+				{
+					for (int i = 0; i < RL.Links.Count; i++)
+					{
+						string L = RL.Links[i];
+						if (!L.Contains("?donsk") && !L.Contains("?closed"))
+						{
+							driver.Navigate().GoToUrl(L);
+
+							Thread.Sleep(1000);
+
+							try
+							{
+								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
+								textarea.SendKeys("This is a sample text.");
+								Thread.Sleep(500);
+								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
+								greenButton.Click();
+
+								RL.Links[RL.Links.IndexOf(L)] += "?donsk";
+
+
+							}
+							catch
+							{
+								RL.Links[RL.Links.IndexOf(L)] += "?closed";
+							}
+
+							File.WriteAllLines(@"Steam/" + gameName + "/" + gameName + "_" + RL.lang + ".txt", RL.Links);
+							FreshCounts();
+
+
+
+						}
+
+					}
+
+
+
+
+				}
+			}
 		}
 
 		private void button6_Click(object sender, EventArgs e)
@@ -250,15 +394,29 @@ namespace SteamReviews
 			while (isScrolling)
 			{
 
+				/*IWebElement end = myDriver.FindElement(By.ClassName("apphub_NoMoreContentText1"));
+				if (end != null)
+				{
+					isScrolling = false;
+
+					if (One)
+					{
+						MakeOutput(gameName, _selectedLanguage);
+						return;
+					}
+
+				}*/
+
+				((IJavaScriptExecutor)myDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+
+				Thread.Sleep(100);
+
+				pageNumber += 1;
+				
+
 				try
 				{
-					((IJavaScriptExecutor)myDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-
-					Thread.Sleep(100);
-
-					pageNumber += 1;
 					IWebElement page = myDriver.FindElement(By.Id("page" + pageNumber.ToString()));
-
 					ReadOnlyCollection<IWebElement> childElements = page.FindElements(By.ClassName("apphub_Card"));
 					IWebElement[] cards = childElements.ToArray();
 
@@ -268,33 +426,38 @@ namespace SteamReviews
 						Alllinks.Add(link);
 					}
 
-					Thread.Sleep(1000);
-
 				}
 				catch
 				{
-
 					try
 					{
-						IWebElement end = myDriver.FindElement(By.ClassName("apphub_NoMoreContentText1"));
 
+						IWebElement page = myDriver.FindElement(By.Id("page" + pageNumber.ToString()));
+						ReadOnlyCollection<IWebElement> childElements = page.FindElements(By.ClassName("apphub_Card"));
+						IWebElement[] cards = childElements.ToArray();
+
+						foreach (IWebElement E in cards)
+						{
+							string link = E.GetAttribute("data-modal-content-url");
+							Alllinks.Add(link);
+						}
+					}
+					catch
+					{
 						isScrolling = false;
-
 
 						if (One)
 						{
 							MakeOutput(gameName, _selectedLanguage);
+							return;
 						}
-
 					}
-					catch
-					{
-
-					}
-
-
-
 				}
+			
+
+				Thread.Sleep(1000);
+
+				
 
 			}
 		}
@@ -309,7 +472,7 @@ namespace SteamReviews
 			}
 			else
 			{
-				System.IO.Directory.CreateDirectory(gameName);
+				System.IO.Directory.CreateDirectory(@"Steam/" + _gameName);
 				System.IO.File.WriteAllLines(@"Steam/" + _gameName + "/" + _gameName + "_" + _selectedLanguage + ".txt", Alllinks);
 			}
 
@@ -366,49 +529,7 @@ namespace SteamReviews
 		public ChromeOptions YToptions = new ChromeOptions();
 
 
-		private void button9_Click(object sender, EventArgs e)
-		{
-			// Старт
-			YTDrivers = new List<YTClass>();
-
-			VideoLink = textBox4.Text;
-			YTMessageText = File.ReadAllText(@"YouTube/Message.txt");
-
-
-
-
-			YouTubeTokens = new List<string>();
-			using (StreamReader reader = new StreamReader(@"YouTube/Tokens.txt"))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					YouTubeTokens.Add(line);
-				}
-			}
-
-
-			foreach (string T in YouTubeTokens)
-			{
-				YTClass DD = new YTClass();
-
-				DD.Log = T.Split(":")[0];
-				DD.pas = T.Split(":")[1];
-				DD.myname = T.Split(":")[2];
-				DD.nomination = T.Split(":")[3];
-				DD.working = T.Split(":")[4];
-				DD.Replies = Int32.Parse(T.Split(":")[5]);
-
-				YTDrivers.Add(DD);
-			}
-
-
-			MessageBox.Show("Готово к работе");
-
-
-
-
-		}
+		
 
 
 		public void GetTokens()
@@ -457,21 +578,7 @@ namespace SteamReviews
 			}
 		}
 
-		private void button11_Click(object sender, EventArgs e)
-		{
-
-			bool ready = true;
-			//Логинизация
-
-			while (ready)
-			{
-				ready = CheckAccounts();
-			}
-			
-
-			//Если есть ahT6S 
-		}
-
+	
 
 		public bool CheckAccounts()
 		{
@@ -570,13 +677,6 @@ namespace SteamReviews
 
 
 
-
-
-		private void button12_Click(object sender, EventArgs e)
-		{
-			ChangeAccount();
-			// Начать спам
-		}
 
 
 
@@ -684,12 +784,22 @@ namespace SteamReviews
 				using (StreamReader reader = new StreamReader(@"YouTube/Tokens.txt"))
 				{
 					string line;
-					while ((line = reader.ReadLine()) != null)
+					/*while ((line = reader.ReadLine()) != null)
 					{
 						string logpas = line.Split("|")[1];
 						string result = logpas.Replace("\"", "");
 						result = logpas.Replace(" ", "");
-						result += ":Kirilllachaev:@lachaev:Yes:0";
+						result += ":Kirilllachaev:Kirilllachaev:No:0";
+						YouTubeTokens.Add(result);
+					}*/
+
+					while ((line = reader.ReadLine()) != null)
+					{
+						string log = line.Split(":")[0];
+						string pas = line.Split(":")[1];
+						string result = log + ":" + pas;
+						result = result.Replace(" ", "");
+						result += ":Kirilllachaev:Kirilllachaev:No:0";
 						YouTubeTokens.Add(result);
 					}
 				}
@@ -742,70 +852,8 @@ namespace SteamReviews
 	
 
 
-		private void button7_Click(object sender, EventArgs e)
-		{
-
-			MessageText = File.ReadAllText(@"Discord/Message.txt");
-			MessageText2 = File.ReadAllText(@"Discord/Message2.txt");
-		
-
-			_ServerName = textBox3.Text;
-
-			getMembers();
-
-			DiscordTokens = new List<string>();
-			using (StreamReader reader = new StreamReader(@"Discord/Tokens.txt"))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					DiscordTokens.Add(line);
-				}
-			}
-
-			MessageBox.Show("Загружено " + DiscordMembers.Count + " ссылок");
-
-			DiscordDrivers = new List<DiscordDriver>();
 
 
-			for(int i = 0; i < DiscordTokens.Count; i++)
-			{
-				Thread tt = new Thread(() => MakeDD());
-				tt.Start();
-
-				Thread.Sleep(1000);
-
-
-			}
-
-			
-
-			Thread t = new Thread(() => MessageBox.Show("Vse sozdani"));
-			t.Start();
-
-
-		}
-
-		private void button8_Click(object sender, EventArgs e)
-		{
-			
-			// Начать спам
-
-		}
-
-		private void button6_Click_1(object sender, EventArgs e)
-		{
-			//Завершить
-			if (driver != null)
-				driver.Quit();
-
-			Application.Exit();
-		}
-
-		private void textBox3_TextChanged_1(object sender, EventArgs e)
-		{
-			// Название файлика
-		}
 
 
 		public void getMembers()
@@ -1025,11 +1073,8 @@ namespace SteamReviews
 
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			//driver.Quit();
-			foreach(DiscordDriver DD in DiscordDrivers)
-			{
-				DD.DiscrodDriver.Quit();
-			}
+			driver.Quit();
+		
 			Application.Exit();
 		
 		}
@@ -1045,52 +1090,42 @@ namespace SteamReviews
 		}
 
 
-		private void label6_Click(object sender, EventArgs e)
-		{
+		
 
-		}
-
-		private void label7_Click(object sender, EventArgs e)
-		{
-
-		}
+	
 
 		#endregion
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 
-			/*
-			if(DiscordDrivers != null)
-			{
-				for (int i = 0; i < DiscordDrivers.Count; i++)
-				{
-					if (DiscordDrivers[i].Seconds > 0)
-					{
-						DiscordDrivers[i].Seconds -= 1;
-
-						string times = "";
-						foreach (DiscordDriver DD in DiscordDrivers)
-						{
-							times += DD.Seconds + "    /     ";
-						}
-						label6.Text = times;
-
-
-					}
-				}
-			}
-
-			label5.Text = Done.ToString();
-			*/
-
 		}
 
-		private void textBox4_TextChanged(object sender, EventArgs e)
+		private void label4_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		
+		private void label5_Click_1(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label6_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
+
+
+	public class ReviewLang
+	{
+		public string lang;
+		public List<string> Links = new List<string>();
+	}
+	public class GamePage
+	{
+		public string gameName;
+		public List<ReviewLang> ReviewLangs = new List<ReviewLang>();
 	}
 }
