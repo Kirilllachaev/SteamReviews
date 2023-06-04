@@ -337,11 +337,12 @@ namespace SteamReviews
 								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
 								string text = messages[RL.lang];
 								textarea.SendKeys(text);
-								Thread.Sleep(500);
+								Thread.Sleep(1000);
 								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
 								greenButton.Click();
 
 								RL.Links[RL.Links.IndexOf(L)] += "?donsk";
+								Thread.Sleep(500);
 
 
 							}
