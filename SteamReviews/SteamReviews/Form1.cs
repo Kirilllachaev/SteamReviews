@@ -341,8 +341,23 @@ namespace SteamReviews
 								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
 								greenButton.Click();
 
-								RL.Links[RL.Links.IndexOf(L)] += "?donsk";
+
 								Thread.Sleep(500);
+								IWebElement errorElement = driver.FindElement(By.ClassName("commentthread_entry_error"));
+								string errorText = errorElement.Text;
+								if (errorText == "Простите, что-то пошло не так: вы слишком часто отправляете сообщения, передохните немного")
+								{
+								
+									
+								}
+								else
+								{
+								
+									RL.Links[RL.Links.IndexOf(L)] += "?donsk";
+								}
+
+						
+								
 
 
 							}

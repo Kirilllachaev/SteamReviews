@@ -157,7 +157,8 @@ namespace SteamReviews
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(132, 23);
 			this.textBox1.TabIndex = 9;
-			this.textBox1.Text = "https://steamcommunity.com/app/227860/positivereviews/";
+			this.textBox1.Text = "https://steamcommunity.com/app/688420/positivereviews/?";
+			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// label2
@@ -185,7 +186,7 @@ namespace SteamReviews
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(132, 23);
 			this.textBox2.TabIndex = 12;
-			this.textBox2.Text = "CastleStory";
+			this.textBox2.Text = "BadNorth";
 			this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
 			// 
 			// timer1
