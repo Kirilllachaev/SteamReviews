@@ -42,13 +42,19 @@ namespace SteamReviews
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.button10 = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.button6 = new System.Windows.Forms.Button();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
+			this.button7 = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button2
@@ -63,7 +69,7 @@ namespace SteamReviews
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(188, 200);
+			this.button3.Location = new System.Drawing.Point(188, 249);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(132, 43);
 			this.button3.TabIndex = 2;
@@ -157,7 +163,7 @@ namespace SteamReviews
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(132, 23);
 			this.textBox1.TabIndex = 9;
-			this.textBox1.Text = "https://steamcommunity.com/app/688420/positivereviews/?";
+			this.textBox1.Text = "https://steamcommunity.com/app/1743830/reviews/";
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
@@ -186,7 +192,6 @@ namespace SteamReviews
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(132, 23);
 			this.textBox2.TabIndex = 12;
-			this.textBox2.Text = "BadNorth";
 			this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
 			// 
 			// timer1
@@ -195,20 +200,10 @@ namespace SteamReviews
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// button10
-			// 
-			this.button10.Location = new System.Drawing.Point(826, 395);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(132, 43);
-			this.button10.TabIndex = 36;
-			this.button10.Text = "Сделать токены";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
-			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(341, 102);
+			this.label4.Location = new System.Drawing.Point(341, 81);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(43, 15);
 			this.label4.TabIndex = 37;
@@ -218,7 +213,7 @@ namespace SteamReviews
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(341, 117);
+			this.label5.Location = new System.Drawing.Point(341, 96);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(64, 15);
 			this.label5.TabIndex = 38;
@@ -228,7 +223,7 @@ namespace SteamReviews
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(341, 132);
+			this.label6.Location = new System.Drawing.Point(341, 111);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(43, 15);
 			this.label6.TabIndex = 39;
@@ -237,7 +232,7 @@ namespace SteamReviews
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(188, 151);
+			this.button6.Location = new System.Drawing.Point(188, 200);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(132, 43);
 			this.button6.TabIndex = 40;
@@ -247,34 +242,84 @@ namespace SteamReviews
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(341, 171);
+			this.textBox3.Location = new System.Drawing.Point(479, 84);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(132, 23);
 			this.textBox3.TabIndex = 41;
-			this.textBox3.Text = "72724614";
+			this.textBox3.Text = "EL FUGADO2";
+			this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged_1);
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(341, 147);
+			this.label7.Location = new System.Drawing.Point(479, 110);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(47, 15);
 			this.label7.TabIndex = 42;
 			this.label7.Text = "Deleted";
 			this.label7.Click += new System.EventHandler(this.label7_Click);
 			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(188, 151);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(132, 43);
+			this.button7.TabIndex = 43;
+			this.button7.Text = "Собрать коммы";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+			this.dataGridView1.Location = new System.Drawing.Point(341, 151);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowTemplate.Height = 25;
+			this.dataGridView1.Size = new System.Drawing.Size(569, 276);
+			this.dataGridView1.TabIndex = 44;
+			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+			// 
+			// Column1
+			// 
+			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.Column1.HeaderText = "Game";
+			this.Column1.MinimumWidth = 200;
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 200;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Positive";
+			this.Column2.Name = "Column2";
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Spammed";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Closed";
+			this.Column4.Name = "Column4";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(970, 450);
+			this.ClientSize = new System.Drawing.Size(946, 450);
+			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.button7);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.button6);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.button10);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
@@ -291,6 +336,7 @@ namespace SteamReviews
 			this.Text = "Steam Reviews";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
 			this.Load += new System.EventHandler(this.Form1_Load);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -309,13 +355,18 @@ namespace SteamReviews
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 	}
 }
 

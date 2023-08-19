@@ -46,6 +46,58 @@ namespace SteamReviews
 			selectedLanguage = comboBox1.Text;
 
 
+
+			string[] subdirectories = Directory.GetDirectories(@"Steam/");
+
+			foreach(string Dir in subdirectories)
+			{
+				string mdir = Dir.Split("/")[1];
+				
+				int count = 0;
+				int spammed = 0;
+				int closed = 0;
+
+				try
+				{
+					string[] txtFiles = Directory.GetFiles(@"Steam/" + mdir, "*.txt");
+
+					foreach (string filePath in txtFiles)
+					{
+						string fileName = Path.GetFileName(filePath);
+						ReviewLang RL = new ReviewLang();
+						RL.lang = fileName.Split('_')[1].Split('.')[0];
+						RL.Links = new List<string>();
+
+						string[] lines = File.ReadAllLines(filePath);
+
+						foreach (string line in lines)
+						{
+
+							count += 1;
+							if (line.Contains("?donsk"))
+							{
+								spammed += 1;
+							}
+							if (line.Contains("?closed"))
+							{
+								closed += 1;
+							}
+							RL.Links.Add(line);
+						}
+
+					}
+					
+				}
+				catch
+				{
+
+				}
+
+
+				string[] row = { mdir, count.ToString(), spammed.ToString(), closed.ToString() };
+				dataGridView1.Rows.Add(row);
+			}
+
 		}
 
 		ChromeDriver driver = null;
@@ -65,7 +117,7 @@ namespace SteamReviews
 
 		public string gameName = "";
 		public string gameLink = "";
-
+		public string steamacc = "";
 
 
 		public string linksFile = "";
@@ -88,6 +140,7 @@ namespace SteamReviews
 
 			gameName = textBox2.Text;
 			gameLink = textBox1.Text;
+			steamacc = textBox3.Text;
 
 			//
 			getReviews();
@@ -504,6 +557,75 @@ namespace SteamReviews
 			}
 		}
 
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			steamacc = textBox3.Text;
+			// Собрать коммы
+
+			SteamSpamCollecting();
+		}
+
+		public void SteamSpamCollecting()
+		{
+			List<string> links = new List<string>();
+
+			bool dabs = true;
+			// Цикл для повторения действий
+
+			try
+			{
+				while (dabs)
+				{
+					// Найти все элементы с классом comment_item_title
+					IReadOnlyCollection<IWebElement> titles = driver.FindElements(By.ClassName("comment_item_title"));
+
+					// Обработка каждого элемента
+					foreach (IWebElement title in titles)
+					{
+						// Найти ссылку внутри элемента <a>
+						IWebElement linkElement = title.FindElement(By.TagName("a"));
+
+						// Получить URL ссылки
+						string link = linkElement.GetAttribute("href");
+
+						// Добавить ссылку в массив
+						links.Add(link);
+					}
+
+					// Найти все элементы с классом pagebtn
+					IReadOnlyCollection<IWebElement> pageButtons = driver.FindElements(By.ClassName("pagebtn"));
+
+					// Проверить, содержит ли второй элемент класс disabled
+					if (pageButtons.ElementAt(1).GetAttribute("class").Contains("disabled"))
+					{
+						// Если второй элемент содержит класс disabled, выйти из цикла
+
+						System.IO.File.WriteAllLines(@"Steam/" + steamacc + ".txt", links);
+
+
+						dabs = false;
+						break;
+
+					}
+
+					// Нажать на второй элемент
+					IWebElement secondPageButton = pageButtons.ElementAt(1);
+					secondPageButton.Click();
+
+
+
+
+				}
+			}
+			catch
+			{
+
+				System.IO.File.WriteAllLines(@"Steam/" + steamacc + ".txt", links);
+			}
+			
+		}
+
 		private void button6_Click_1(object sender, EventArgs e)
 		{
 			// удалить коммы
@@ -512,74 +634,65 @@ namespace SteamReviews
 
 		public void SteamDeleting()
 		{
-			if (gamePage.ReviewLangs.Count > 0)
+
+			string[] lines = File.ReadAllLines(@"Steam/" + steamacc + ".txt");
+			string[] linecop = lines;
+
+			for(int i = 0; i < lines.Length; i++)
 			{
-				foreach (ReviewLang RL in gamePage.ReviewLangs)
+				
+				string L = lines[i];
+				if (!L.Contains("?del"))
 				{
-					for (int i = 0; i < RL.Links.Count; i++)
+					driver.Navigate().GoToUrl(L);
+
+					Thread.Sleep(1000);
+
+					IReadOnlyCollection<IWebElement> elements = driver.FindElements(By.ClassName("commentthread_comment"));
+
+					// Создание экземпляра класса Actions
+					Actions actions = new Actions(driver);
+
+					// Применение состояния :hover к каждому найденному элементу
+					foreach (IWebElement element1 in elements)
 					{
-						string L = RL.Links[i];
-						if (L.Contains("?donsk") && !L.Contains("?donskdel"))
+						actions.MoveToElement(element1).Perform();
+						Thread.Sleep(500);
+						
+						IWebElement bdiElement = element1.FindElement(By.TagName("bdi"));
+						if (bdiElement.Text == steamacc)
 						{
-							driver.Navigate().GoToUrl(L);
-
-							Thread.Sleep(1000);
-
-							IReadOnlyCollection<IWebElement> elements = driver.FindElements(By.ClassName("commentthread_comment"));
-
-							// Создание экземпляра класса Actions
-							Actions actions = new Actions(driver);
-
-							// Применение состояния :hover к каждому найденному элементу
-							foreach (IWebElement element1 in elements)
-							{
-								actions.MoveToElement(element1).Perform();
-							}
-
-							try
-							{
-								IWebElement element = driver.FindElement(By.CssSelector("[data-tooltip-text='Удалить']"));
-								element.Click();
-								RL.Links[RL.Links.IndexOf(L)] += "del";
-							}
-							catch
-							{
-								try
-								{
-									IWebElement element = driver.FindElement(By.CssSelector("[data-tooltip-text='Удалить']"));
-									element.Click();
-									RL.Links[RL.Links.IndexOf(L)] += "del";
-								}
-								catch
-								{
-
-								}
-							}
-
-
-							
-
-							File.WriteAllLines(@"Steam/" + gameName + "/" + gameName + "_" + RL.lang + ".txt", RL.Links);
-							FreshCounts();
-
-
-
+							IWebElement element = driver.FindElement(By.CssSelector("[data-tooltip-text='Удалить']"));
+							element.Click();
+						
+							Thread.Sleep(100);
+							break;
 						}
 
+						
 					}
 
+					linecop[i] += "?del";
 
 
 
+
+					File.WriteAllLines(@"Steam/" + steamacc + ".txt", linecop);
 				}
+
+				
+			
+
 			}
+
+
 		}
 
 
 		public void MakeOutput(string _gameName, string _selectedLanguage)
 		{
 
-			if (System.IO.Directory.Exists(@_gameName))
+			if (System.IO.Directory.Exists(@"Steam/" + _gameName))
 			{
 				System.IO.File.WriteAllLines(@"Steam/" + _gameName + "/" + _gameName + "_" + _selectedLanguage + ".txt", Alllinks);
 			}
@@ -1230,6 +1343,16 @@ namespace SteamReviews
 		}
 
 		private void label7_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBox3_TextChanged_1(object sender, EventArgs e)
+		{
+
+		}
+
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
 		}
