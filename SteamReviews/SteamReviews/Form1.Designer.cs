@@ -57,6 +57,7 @@ namespace SteamReviews
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -339,11 +340,25 @@ namespace SteamReviews
 			this.textBox5.Text = "146.247.113.250:59100";
 			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
 			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Checked = true;
+			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox2.Location = new System.Drawing.Point(224, 10);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(68, 19);
+			this.checkBox2.TabIndex = 48;
+			this.checkBox2.Text = "Прокси";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(946, 450);
+			this.Controls.Add(this.checkBox2);
 			this.Controls.Add(this.textBox5);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.textBox4);
@@ -405,6 +420,7 @@ namespace SteamReviews
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }
 
