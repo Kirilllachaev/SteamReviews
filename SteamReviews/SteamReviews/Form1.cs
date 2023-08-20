@@ -44,7 +44,6 @@ namespace SteamReviews
 			InitializeComponent();
 
 			selectedLanguage = comboBox1.Text;
-			SpamerNumber = Int32.Parse(textBox4.Text);
 
 
 
@@ -117,7 +116,7 @@ namespace SteamReviews
 		public string selectedLanguage = "all";
 
 		public string[] SpamNames = { "Bee Island", "Long Way", "Don Duality", "Sunkenland", "Absence of Light" };
-		public string[] SpamLinks = { "Bee Island", "Long Way", "Don Duality", "Sunkenland", "Absence of Light" };
+		public string[] SpamLinks = { "https://store.steampowered.com/app/2345020/Bee_Island/", "https://store.steampowered.com/app/2455070/Long_Way/", "https://store.steampowered.com/app/2247570/Don_Duality/", "https://store.steampowered.com/app/2080690/Sunkenland/", "https://store.steampowered.com/app/2536710/Absence_of_Light/" };
 
 
 		public string gameName = "";
@@ -129,6 +128,10 @@ namespace SteamReviews
 
 		public int allLinkCount = 0;
 		public GamePage gamePage;
+
+		public bool ContinueSbor = false;
+
+		public string DriverProxy;
 
 
 
@@ -142,12 +145,28 @@ namespace SteamReviews
 			if (driver != null)
 				driver.Quit();
 
-			driver = new ChromeDriver();
+
+			SpamerNumber = Int32.Parse(textBox4.Text);
+
+			DriverProxy = textBox5.Text;
+
+			ChromeOptions options = new ChromeOptions();
+			Proxy proxy = new Proxy();
+			proxy.Kind = ProxyKind.Manual;
+			proxy.HttpProxy = DriverProxy;
+			proxy.SslProxy = DriverProxy;
+
+			// Назначение прокси-настроек объекту опций
+			options.Proxy = proxy;
+
+			driver = new ChromeDriver(options);
 			driver.Navigate().GoToUrl("https://steamcommunity.com/login/home/");
 
 			gameName = textBox2.Text;
 			gameLink = textBox1.Text;
 			steamacc = textBox3.Text;
+
+			ContinueSbor = checkBox1.Checked;
 
 			//
 			getReviews();
@@ -346,34 +365,34 @@ namespace SteamReviews
 
 		Dictionary<string, string> messages = new Dictionary<string, string>
 		{
-			{ "italian", "Ciao!\nPotrebbe interessarti.\nStiamo facendo un gioco simile! Abbiamo intenzione di finirlo entro la fine dell'estate!\nDai un'occhiata alla pagina del nostro gioco Bee Island.\nSe ti piace, aggiungi il gioco alla tua lista dei desideri e unisciti al nostro server Discord. Questo ci aiuterà nella promozione!\nGrazie e scusa per il disturbo!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "polish", "Cześć!\nMoże Cię to zainteresuje.\nTworzymy podobną grę! Planujemy ją ukończyć do końca lata!\nZajrzyj na stronę naszej gry Bee Island.\nJeśli Ci się spodoba, dodaj ją do listy życzeń i dołącz do naszego serwera Discord. To pomoże w promocji!\nDziękujemy i przepraszamy za przeszkadzanie!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "schinese", "你好！\n也许你会感兴趣。\n我们正在制作一款类似的游戏！我们计划在夏季结束之前完成！\n请查看我们的游戏《蜜蜂岛》页面。\n如果你喜欢，请将游戏添加到愿望列表，并加入我们的 Discord 服务器，这将有助于推广！\n谢谢，为打扰你感到抱歉！\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "tchinese", "你好！\n也許你會有興趣。\n我們正在製作一款類似的遊戲！我們計劃在夏季結束之前完成！\n請查看我們的遊戲《蜜蜂島》頁面。\n如果你喜歡，請將遊戲添加到願望清單並加入我們的 Discord 伺服器，這將有助於推廣！\n謝謝，為打擾你感到抱歉！\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "japanese", "こんにちは！\n興味があるかもしれません。\n似たようなゲームを作っています！夏の終わりまでに完成する予定です！\n私たちのゲーム「Bee Island」のページをご覧ください。\n気に入ったら、ゲームをウィッシュリストに追加し、Discordサーバーに参加してください。これはプロモーションに役立ちます！\nご迷惑をおかけして申し訳ありませんが、よろしくお願いします！\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "koreana", "안녕하세요!\n관심 있으실지도 모릅니다.\n비슷한 게임을 만들고 있습니다! 여름이 끝나기 전에 완성할 계획입니다!\n저희 게임 Bee Island 페이지를 확인해보세요.\n마음에 드신다면 게임을 희망 목록에 추가하고 Discord 서버에 참여해주시면 홍보에 도움이 됩니다!\n감사하고 불편을 끼쳐드려 죄송합니다!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "thai", "สวัสดี!\nอาจที่คุณจะสนใจ\nเรากำลังทำเกมที่คล้ายกัน! เราวางแผนที่จะเสร็จสิ้นภายในปลายฤดูร้อน!\nเข้าไปดูหน้าเกมของเรา Bee Island\nถ้าชอบ ให้เพิ่มเกมลงในรายการที่ต้องการและเข้ามายังเซิร์ฟเวอร์ Discord ของเรา นั่นจะช่วยส่งเสริม!\nขอบคุณและขออภัยหากขัดจังหวะ!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "bulgarian", "Здравей!\nМоже да те заинтересува.\nПравим подобна игра! Планираме да я завършим до края на лятото!\nПровери страницата на нашата игра Bee Island.\nАко ти хареса, добави играта в желаните и влез в нашия Discord сървър, това ще помогне за нейното популяризиране!\nБлагодарим и се извиняваме за безпокойството!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "czech", "Ahoj!\nMožná tě to zaujme.\nDěláme podobnou hru! Plánujeme ji dokončit ke konci léta!\nPodívej se na stránku naší hry Bee Island.\nPokud se ti líbí, přidej si ji do seznamu přání a připoj se na náš Discord server, to nám pomůže s propagací!\nDěkujeme a omlouváme se za obtěžování!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "danish", "Hej!\nMåske kunne det interessere dig.\nVi laver et lignende spil! Vi planlægger at færdiggøre det inden sommerens slutning!\nKig på vores spilsiden Bee Island.\nHvis du kan lide det, tilføj spillet til din ønskeliste og kom ind på vores Discord-server, det vil hjælpe med markedsføringen!\nTak og undskyld for besværet!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "german", "Hallo!\nVielleicht interessiert es dich.\nWir machen ein ähnliches Spiel! Wir planen, es bis zum Ende des Sommers abzuschließen!\nSchau dir die Seite unseres Spiels Bee Island an.\nWenn es dir gefällt, füge das Spiel deiner Wunschliste hinzu und komm auf unseren Discord-Server, das hilft bei der Verbreitung!\nDanke und entschuldige die Störung!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "english", "Hello!\nYou might be interested.\nWe are making a similar game! We plan to finish it by the end of summer!\nCheck out the page of our game Bee Island.\nIf you like it, add the game to your wishlist and join our Discord server, it will help with promotion!\nThank you and sorry for the inconvenience!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "spanish", "¡Hola!\nQuizás te interese.\n¡Estamos haciendo un juego similar! ¡Planeamos terminarlo para finales del verano!\nEcha un vistazo a la página de nuestro juego Bee Island.\nSi te gusta, añade el juego a tu lista de deseos y únete a nuestro servidor de Discord, ¡esto ayudará en la promoción!\n¡Gracias y disculpa las molestias!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "latam", "¡Hola!\nQuizá te interese.\n¡Estamos haciendo un juego similar! ¡Planeamos terminarlo para finales del verano!\nEcha un vistazo a la página de nuestro juego Bee Island.\nSi te gusta, agrega el juego a tu lista de deseos y únete a nuestro servidor de Discord, ¡esto ayudará en la promoción!\n¡Gracias y disculpa las molestias!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "greek", "Γεια σου!\nΊσως σε ενδιαφέρει.\nΦτιάχνουμε ένα παρόμοιο παιχνίδι! Προγραμματίζουμε να το ολοκληρώσουμε μέχρι το τέλος του καλοκαιριού!\nΚοίτα τη σελίδα του παιχνιδιού μας Bee Island.\nΑν σου αρέσει, πρόσθεσε το παιχνίδι στη λίστα επιθυμιών σου και έλα στον διακομιστή Discord μας, αυτό θα βοηθήσει στην προώθηση!\nΕυχαριστούμε και συγνώμη για την ταλαιπωρία!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "french", "Salut !\nCela pourrait t'intéresser.\nNous faisons un jeu similaire ! Nous prévoyons de le terminer d'ici la fin de l'été !\nJette un œil à la page de notre jeu Bee Island.\nSi ça te plaît, ajoute le jeu à ta liste de souhaits et rejoins notre serveur Discord, ça nous aidera pour la promotion !\nMerci et désolé pour le dérangement !\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "hungarian", "Szia!\nLehet, hogy érdekel.\nHasonló játékot készítünk! A terveink szerint nyár végére befejezzük!\nNézd meg a Bee Island játékunk oldalát.\nHa tetszik, add hozzá a játékot a kívánságlistádhoz, és csatlakozz a Discord szerverünkhöz, ez segíteni fog a népszerűsítésben!\nKöszönjük és elnézést a kellemetlenségért!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "dutch", "Hallo!\nMisschien ben je geïnteresseerd.\nWe maken een vergelijkbaar spel! We zijn van plan het tegen het einde van de zomer af te ronden!\nBekijk de pagina van ons spel Bee Island.\nAls je het leuk vindt, voeg het spel dan toe aan je verlanglijstje en doe mee aan onze Discord-server, dit helpt bij de promotie!\nBedankt en sorry voor het ongemak!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "norwegian", "Hei!\nKanskje du er interessert.\nVi lager et lignende spill! Vi planlegger å fullføre det mot slutten av sommeren!\nSjekk ut siden til spillet vårt Bee Island.\nHvis du liker det, legg til spillet på ønskelisten din og bli med i vår Discord-server, det vil hjelpe med markedsføringen!\nTakk og beklager for bryderiet!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "portuguese", "Olá!\nVocê pode se interessar.\nEstamos fazendo um jogo semelhante! Planejamos terminá-lo até o final do verão!\nConfira a página do nosso jogo Bee Island.\nSe você gostar, adicione o jogo à sua lista de desejos e entre no nosso servidor do Discord, isso ajudará na promoção!\nObrigado e desculpe pelo incômodo!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "brazilian", "Olá!\nVocê pode se interessar.\nEstamos fazendo um jogo similar! Planejamos terminá-lo até o final do verão!\nConfira a página do nosso jogo Bee Island.\nSe gostar, adicione o jogo à sua lista de desejos e entre em nosso servidor do Discord, isso ajudará na promoção!\nObrigado e desculpe pelo incômodo!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "romanian", "Salut!\nPoate te interesează.\nFacem un joc similar! Planificăm să-l terminăm până la sfârșitul verii!\nVerifică pagina jocului nostru Bee Island.\nDacă îți place, adaugă jocul în lista ta de dorințe și alătură-te serverului nostru de Discord, acest lucru va ajuta la promovare!\nMulțumim și ne cerem scuze pentru inconveniențe!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "russian", "Привет!\nВозможно тебя заинтересует.\nМы делаем похожую игру! Планируем завершить её к концу лета!\nПосмотри страницу нашей игры Bee Island.\nЕсли понравится - добавь игру в список желаемого и заходи в наш Discord сервер, это поможет в продвижении!\nСпасибо и извини за беспокойство!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "finnish", "Hei!\nSaattaisi kiinnostaa.\nTeemme samanlaista peliä! Suunnitelmissamme on saada se valmiiksi kesän loppuun mennessä!\nTutustu pelimme Bee Island sivuun.\nJos tykkäät, lisää peli toivelistaasi ja liity Discord-palvelimeemme, se auttaa markkinoinnissa!\nKiitos ja anteeksi häiriöstä!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "swedish", "Hej!\nDu kanske är intresserad.\nVi gör en liknande spel! Vi planerar att slutföra det innan sommarens slut!\nKolla in sidan för vårt spel Bee Island.\nOm du gillar det, lägg till spelet i din önskelista och gå med i vår Discord-server, det hjälper till med marknadsföringen!\nTack och förlåt för besväret!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "turkish", "Merhaba!\nBelki ilgilenirsin.\nBenzer bir oyun yapıyoruz! Yaz sonuna kadar bitirmeyi planlıyoruz!\nBee Island oyunumuzun sayfasına göz at.\nBeğenirsen, oyunu dilek listene ekle ve Discord sunucumuza katıl, bu tanıtımda yardımcı olacaktır!\nTeşekkür ederiz ve rahatsızlık için özür dileriz!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "vietnamese", "Xin chào!\nCó thể bạn quan tâm.\nChúng tôi đang làm một trò chơi tương tự! Kế hoạch hoàn thành trước cuối mùa hè!\nHãy xem trang của trò chơi Bee Island của chúng tôi.\nNếu bạn thích, thêm trò chơi vào danh sách mong muốn và tham gia Discord server của chúng tôi, điều đó sẽ giúp quảng bá!\nCảm ơn bạn và xin lỗi vì sự phiền toái!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" },
-			{ "ukrainian", "Привіт!\nМожливо, тебе зацікавить.\nМи робимо подібну гру! Плануємо завершити її до кінця літа!\nПереглянь сторінку нашої гри Bee Island.\nЯкщо сподобається - додай гру до списку бажаного та заходь на наш Discord сервер, це допоможе в продвиженні!\nДякуємо і вибач за турботу!\n\nhttps://store.steampowered.com/app/2345020/Bee_Island/" }
+			{ "italian", "Ciao!\nPotrebbe interessarti.\nStiamo facendo un gioco simile! Abbiamo intenzione di finirlo entro la fine dell'estate!\nGuarda la pagina del nostro gioco.\nSe ti piace, aggiungi il gioco alla tua lista dei desideri, questo ci aiuterà nella promozione!\nGrazie e scusa per il disturbo!\n\nGioco:" },
+			{ "polish", "Cześć!\nMoże Cię to zainteresuje.\nTworzymy podobną grę! Planujemy ją ukończyć do końca lata!\nSprawdź stronę naszej gry.\nJeśli Ci się spodoba, dodaj ją do listy życzeń, to pomoże w promocji!\nDziękujemy i przepraszamy za przeszkadzanie!\n\nGra:" },
+			{ "schinese", "你好！\n也许你会感兴趣。\n我们正在制作一款类似的游戏！我们计划在夏季结束之前完成！\n请查看我们的游戏页面。\n如果你喜欢，请将游戏添加到愿望列表，这将有助于推广！\n谢谢，为打扰你感到抱歉！\n\n游戏：" },
+			{ "tchinese", "你好！\n也許你會有興趣。\n我們正在製作一款類似的遊戲！我們計劃在夏季結束之前完成！\n請查看我們的遊戲頁面。\n如果你喜歡，請將遊戲添加到願望清單，這將有助於推廣！\n謝謝，為打擾你感到抱歉！\n\n遊戲：" },
+			{ "japanese", "こんにちは！\n興味があるかもしれません。\n似たようなゲームを作っています！夏の終わりまでに完成する予定です！\n私たちのゲームページをご覧ください。\n気に入ったら、ゲームをウィッシュリストに追加してください、これはプロモーションに役立ちます！\nご迷惑をおかけして申し訳ありませんが、よろしくお願いします！\n\nゲーム：" },
+			{ "koreana", "안녕하세요!\n관심 있으실지도 모릅니다.\n비슷한 게임을 만들고 있습니다! 여름이 끝나기 전에 완성할 계획입니다!\n저희 게임 페이지를 확인해보세요.\n마음에 드신다면 게임을 희망 목록에 추가해주시면 홍보에 도움이 됩니다!\n감사하고 불편을 끼쳐드려 죄송합니다!\n\n게임:" },
+			{ "thai", "สวัสดี!\nอาจที่คุณจะสนใจ\nเรากำลังทำเกมที่คล้ายกัน! เราวางแผนที่จะเสร็จสิ้นภายในปลายฤดูร้อน!\nดูหน้าเกมของเรา\nถ้าชอบ ให้เพิ่มเกมลงในรายการที่ต้องการ นั่นจะช่วยส่งเสริม!\nขอบคุณและขออภัยหากขัดจังหวะ!\n\nเกม:" },
+			{ "bulgarian", "Здравей!\nМоже да те заинтересува.\nПравим подобна игра! Планираме да я завършим до края на лятото!\nПровери страницата на нашата игра.\nАко ти хареса, добави играта в желаните, това ще помогне за нейното популяризиране!\nБлагодарим и се извиняваме за безпокойството!\n\nИгра:" },
+			{ "czech", "Ahoj!\nMožná tě to zaujme.\nDěláme podobnou hru! Plánujeme ji dokončit ke konci léta!\nPodívej se na stránku naší hry.\nPokud se ti líbí, přidej si ji do seznamu přání, to nám pomůže s propagací!\nDěkujeme a omlouváme se za obtěžování!\n\nHra:" },
+			{ "danish", "Hej!\nMåske kunne det interessere dig.\nVi laver et lignende spil! Vi planlægger at færdiggøre det inden sommerens slutning!\nKig på vores spilsiden.\nHvis du kan lide det, tilføj spillet til din ønskeliste, det vil hjælpe med markedsføringen!\nTak og undskyld for besværet!\n\nSpil:" },
+			{ "german", "Hallo!\nVielleicht interessiert es dich.\nWir machen ein ähnliches Spiel! Wir planen, es bis zum Ende des Sommers abzuschließen!\nSchau dir die Seite unseres Spiels an.\nWenn es dir gefällt, füge das Spiel deiner Wunschliste hinzu, das hilft bei der Verbreitung!\nDanke und entschuldige die Störung!\n\nSpiel:" },
+			{ "english", "Hello!\nYou might be interested.\nWe are making a similar game! We plan to finish it by the end of summer!\nCheck out the page of our game.\nIf you like it, add the game to your wishlist, it will help with promotion!\nThank you and sorry for the inconvenience!\n\nGame:" },
+			{ "spanish", "¡Hola!\nQuizás te interese.\n¡Estamos haciendo un juego similar! ¡Planeamos terminarlo para finales del verano!\nEcha un vistazo a la página de nuestro juego.\nSi te gusta, añade el juego a tu lista de deseos, ¡esto ayudará en la promoción!\n¡Gracias y disculpa las molestias!\n\nJuego:" },
+			{ "latam", "¡Hola!\nQuizá te interese.\n¡Estamos haciendo un juego similar! ¡Planeamos terminarlo para finales del verano!\nEcha un vistazo a la página de nuestro juego.\nSi te gusta, agrega el juego a tu lista de deseos, ¡esto ayudará en la promoción!\n¡Gracias y disculpa las molestias!\n\nJuego:" },
+			{ "greek", "Γεια σου!\nΊσως σε ενδιαφέρει.\nΦτιάχνουμε ένα παρόμοιο παιχνίδι! Προγραμματίζουμε να το ολοκληρώσουμε μέχρι το τέλος του καλοκαιριού!\nΚοίτα τη σελίδα του παιχνιδιού μας.\nΑν σου αρέσει, πρόσθεσε το παιχνίδι στη λίστα επιθυμιών σου, αυτό θα βοηθήσει στην προώθηση!\nΕυχαριστούμε και συγνώμη για την ταλαιπωρία!\n\nΠαιχνίδι:" },
+			{ "french", "Salut !\nCela pourrait t'intéresser.\nNous faisons un jeu similaire ! Nous prévoyons de le terminer d'ici la fin de l'été !\nJette un œil à la page de notre jeu.\nSi ça te plaît, ajoute le jeu à ta liste de souhaits, ça nous aidera pour la promotion !\nMerci et désolé pour le dérangement !\n\nJeu:" },
+			{ "hungarian", "Szia!\nLehet, hogy érdekel.\nHasonló játékot készítünk! A terveink szerint nyár végére befejezzük!\nNézd meg a játékunk oldalát.\nHa tetszik, adj hozzá a játékot a kívánságlistádhoz, ez segíteni fog a népszerűsítésben!\nKöszönjük és elnézést a kellemetlenségért!\n\nJáték:" },
+			{ "dutch", "Hallo!\nMisschien ben je geïnteresseerd.\nWe maken een vergelijkbaar spel! We zijn van plan het tegen het einde van de zomer af te ronden!\nBekijk de pagina van ons spel.\nAls je het leuk vindt, voeg het spel dan toe aan je verlanglijstje, dat helpt bij de promotie!\nBedankt en sorry voor het ongemak!\n\nSpel:" },
+			{ "norwegian", "Hei!\nKanskje du er interessert.\nVi lager et lignende spill! Vi planlegger å fullføre det mot slutten av sommeren!\nSjekk ut siden til spillet vårt.\nHvis du liker det, legg til spillet på ønskelisten din, det vil hjelpe med markedsføringen!\nTakk og beklager for bryderiet!\n\nSpill:" },
+			{ "portuguese", "Olá!\nVocê pode se interessar.\nEstamos fazendo um jogo semelhante! Planejamos terminá-lo até o final do verão!\nConfira a página do nosso jogo.\nSe você gostar, adicione o jogo à sua lista de desejos, isso ajudará na promoção!\nObrigado e desculpe pelo incômodo!\n\nJogo:" },
+			{ "brazilian", "Olá!\nVocê pode se interessar.\nEstamos fazendo um jogo similar! Planejamos terminá-lo até o final do verão!\nConfira a página do nosso jogo.\nSe gostar, adicione o jogo à sua lista de desejos, isso ajudará na promoção!\nObrigado e desculpe pelo incômodo!\n\nJogo:" },
+			{ "romanian", "Salut!\nPoate te interesează.\nFacem un joc similar! Planificăm să-l terminăm până la sfârșitul verii!\nVerifică pagina jocului nostru.\nDacă îți place, adaugă jocul în lista ta de dorințe, acest lucru va ajuta la promovare!\nMulțumim și ne cerem scuze pentru inconveniențe!\n\nJoc:" },
+			{ "russian", "Привет!\nВозможно тебя заинтересует.\nМы делаем похожую игру! Планируем завершить её к концу лета!\nПосмотри страницу нашей игры.\nЕсли понравится - добавь игру в список желаемого, это поможет в продвижении!\nСпасибо и извини за беспокойство!\n\nИгра:" },
+			{ "finnish", "Hei!\nSaattaisi kiinnostaa.\nTeemme samanlaista peliä! Suunnitelmissamme on saada se valmiiksi kesän loppuun mennessä!\nTutustu pelimme sivuun.\nJos tykkäät, lisää peli toivelistaasi, se auttaa markkinoinnissa!\nKiitos ja anteeksi häiriöstä!\n\nPeli:" },
+			{ "swedish", "Hej!\nDu kanske är intresserad.\nVi gör en liknande spel! Vi planerar att slutföra det innan sommarens slut!\nKolla in sidan för vårt spel.\nOm du gillar det, lägg till spelet i din önskelista, det hjälper till med marknadsföringen!\nTack och förlåt för besväret!\n\nSpel:" },
+			{ "turkish", "Merhaba!\nBelki ilgilenirsin.\nBenzer bir oyun yapıyoruz! Yaz sonuna kadar bitirmeyi planlıyoruz!\nOyunumuzun sayfasına göz at.\nBeğenirsen, oyunu dilek listene ekle, bu tanıtımda yardımcı olacaktır!\nTeşekkür ederiz ve rahatsızlık için özür dileriz!\n\nOyun:" },
+			{ "vietnamese", "Xin chào!\nCó thể bạn quan tâm.\nChúng tôi đang làm một trò chơi tương tự! Kế hoạch hoàn thành trước cuối mùa hè!\nHãy xem trang của trò chơi chúng tôi.\nNếu bạn thích, thêm trò chơi vào danh sách mong muốn, điều đó sẽ giúp quảng bá!\nCảm ơn bạn và xin lỗi vì sự phiền toái!\n\nTrò chơi:" },
+			{ "ukrainian", "Привіт!\nМожливо, тебе зацікавить.\nМи робимо подібну гру! Плануємо завершити її до кінця літа!\nПереглянь сторінку нашої гри.\nЯкщо сподобається - додай гру до списку бажаного, це допоможе в продвиженні!\nДякуємо і вибач за турботу!\n\nГра:" }
 		};
 
 
@@ -396,6 +415,35 @@ namespace SteamReviews
 							{
 								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
 								string text = messages[RL.lang];
+								text += SpamNames[SpamerNumber];
+								text += "\n";
+								text += SpamLinks[SpamerNumber];
+
+								Random random = new Random();
+								int randomIndex = random.Next(6 + ((SpamerNumber+1) * 2)); // 6 options
+
+								switch (randomIndex)
+								{
+									case 0:
+										text = text.Replace(".", ";");
+										break;
+									case 1:
+										text = text.Replace(".", ",");
+										break;
+									case 2:
+										text = text.Replace(",", ";");
+										break;
+									case 3:
+										text = text.Replace(",", ".");
+										break;
+									case 4:
+										text = text.Replace("!", "");
+										break;
+									case 5:
+										text = text.Replace("!", "!!");
+										break;
+								}
+
 								textarea.SendKeys(text);
 								Thread.Sleep(1000);
 								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
@@ -407,9 +455,8 @@ namespace SteamReviews
 								string errorText = errorElement.Text;
 								if (errorText == "Простите, что-то пошло не так: вы слишком часто отправляете сообщения, передохните немного")
 								{
-								
-									
-								}
+
+									MessageBox.Show("Сообщение не отправлено. Аккаунт или Прокси в муте", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);                               }
 								else
 								{
 								
@@ -456,36 +503,63 @@ namespace SteamReviews
 				if (!isCollecting)
 					return;
 
+				
+
 				string CselectedLanguage = comboBox1.Items[i].ToString();
 
-				//driver = new ChromeDriver();
-				driver.Navigate().GoToUrl(gameLink + "/?p=1&browsefilter=all&filterLanguage=" + CselectedLanguage);
+				bool endall = true;
 
-				Thread.Sleep(1000);
-
-
-				try
+				if (ContinueSbor)
 				{
-					Thread.Sleep(500);
-					IWebElement checkich = driver.FindElement(By.Id("ViewAllForApp"));
-					checkich.Click();
-					Thread.Sleep(500);
-					IWebElement grayButton = driver.FindElement(By.Id("age_gate_btn_continue"));
-					grayButton.Click();
-					Thread.Sleep(500);
+					bool haslang = false;
+					foreach (ReviewLang RL in gamePage.ReviewLangs)
+					{
+						if (RL.lang == CselectedLanguage)
+						{
+							haslang = true;
+							
+						}
+					}
+
+					if (haslang)
+					{
+						endall = false;
+					}
 
 				}
-				catch
+
+				if (endall)
 				{
+					//driver = new ChromeDriver();
+					driver.Navigate().GoToUrl(gameLink + "/?p=1&browsefilter=all&filterLanguage=" + CselectedLanguage);
 
+					Thread.Sleep(1000);
+
+
+					try
+					{
+						Thread.Sleep(500);
+						IWebElement checkich = driver.FindElement(By.Id("ViewAllForApp"));
+						checkich.Click();
+						Thread.Sleep(500);
+						IWebElement grayButton = driver.FindElement(By.Id("age_gate_btn_continue"));
+						grayButton.Click();
+						Thread.Sleep(500);
+
+					}
+					catch
+					{
+
+					}
+
+
+
+					isScrolling = true;
+					Scrolling(driver, false, CselectedLanguage);
+
+					MakeOutput(gameName, CselectedLanguage);
 				}
-
-
-
-				isScrolling = true;
-				Scrolling(driver, false, CselectedLanguage);
-
-				MakeOutput(gameName, CselectedLanguage);
+				
 
 
 
@@ -711,8 +785,9 @@ namespace SteamReviews
 
 			allLinkCount += Alllinks.Count;
 
-			Thread t = new Thread(() => MessageBox.Show("Сбор языка " + _selectedLanguage + " завершён. Было собрано " + Alllinks.Count + " ссылок", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning));
-			t.Start();
+			Console.WriteLine("Сбор языка " + _selectedLanguage + " завершён. Было собрано " + Alllinks.Count + " ссылок");
+			//Thread t = new Thread(() => MessageBox.Show("Сбор языка " + _selectedLanguage + " завершён. Было собрано " + Alllinks.Count + " ссылок", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning));
+			//t.Start();
 
 			Thread.Sleep(500);
 
@@ -729,548 +804,6 @@ namespace SteamReviews
 		{
 			selectedLanguage = comboBox1.Text;
 		}
-
-
-
-		#endregion
-
-
-		#region YouTube
-
-
-		public class YTClass
-		{
-			public string Log = "";
-			public string pas = "";
-			public int Replies = 0;
-			public string myname = "";
-			public string nomination = "";
-			public string working = "";
-			public Thread YTThread = null;
-			public IWebDriver YTDriver = null;
-		
-		}
-
-
-		public List<YTClass> YTDrivers;
-		public List<string> YouTubeTokens;
-		public string VideoLink = "";
-		string YTMessageText = "";
-		public int Replies;
-
-		//public FirefoxDriverService YToptions;
-		public ChromeOptions YToptions = new ChromeOptions();
-
-
-		
-
-
-		public void GetTokens()
-		{
-
-			
-
-			YouTubeTokens = new List<string>();
-			using (StreamReader reader = new StreamReader(@"YouTube/Tokens.txt"))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					YouTubeTokens.Add(line);
-				}
-			}
-
-			YTDrivers = new List<YTClass>();
-
-			foreach (string T in YouTubeTokens)
-			{
-				YTClass DD = new YTClass();
-
-				DD.Log = T.Split(":")[0];
-				DD.pas = T.Split(":")[1];
-				DD.myname = T.Split(":")[2];
-				DD.nomination = T.Split(":")[3];
-				DD.working = T.Split(":")[4];
-				DD.Replies = Int32.Parse(T.Split(":")[5]);
-
-				YTDrivers.Add(DD);
-			}
-		}
-
-		public void SetTokens()
-		{
-			File.WriteAllText(@"YouTube/Tokens.txt", "");
-
-			using (StreamWriter writer = new StreamWriter(@"YouTube/Tokens.txt"))
-			{
-				foreach (YTClass Y in YTDrivers)
-				{
-
-					writer.WriteLine(Y.Log + ":" + Y.pas + ":" + Y.myname + ":" + Y.nomination + ":" + Y.working + ":" + Y.Replies.ToString());
-				}
-			}
-		}
-
-	
-
-		public bool CheckAccounts()
-		{
-			YToptions.AddArgument("user-data-dir=C:\\Users\\73961\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
-		
-
-
-			GetTokens();
-
-			YTClass DD = null;
-
-			foreach (YTClass YTC in YTDrivers)
-			{
-				if (YTC.working == "Yes")
-				{
-					DD = YTC;
-					DD.working = "Checking";
-					SetTokens();
-					break;
-				}
-			}
-
-			if (DD == null)
-			{
-				MessageBox.Show("Все токены проверены");
-				return false;
-			}
-
-
-			if (DD.YTDriver != null)
-				DD.YTDriver.Quit();
-
-			DD.YTDriver = new ChromeDriver(YToptions);
-
-			//ChromeOptions options = new ChromeOptions();
-			//options.DebuggerAddress = "127.0.0.1:1234"; // адрес отладчика Chrome
-			//DD.YTDriver = new RemoteWebDriver(new Uri("http://localhost:1234/wd/hub"), options.ToCapabilities());
-
-			DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
-
-
-			//DD.YTDriver.Navigate().GoToUrl("file:///C:/Users/73961/Desktop/fdsf.html");
-			Thread.Sleep(5000);
-
-			IWebElement ButtonGoogle = DD.YTDriver.FindElement(By.CssSelector("[data-oauthserver='https://accounts.google.com/o/oauth2/auth']"));
-			ButtonGoogle.Click();
-
-
-			Thread.Sleep(5000);
-
-			IWebElement LoginArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-			LoginArea.SendKeys(DD.Log);
-
-			IWebElement ButtonAreaLogin = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-			ButtonAreaLogin.Click();
-
-			Thread.Sleep(5000);
-
-
-			IWebElement PassArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-			PassArea.SendKeys(DD.pas);
-
-			IWebElement ButtonAreaPass = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-			ButtonAreaPass.Click();
-			Thread.Sleep(8000);
-
-
-
-			try
-			{
-				IWebElement Error = DD.YTDriver.FindElement(By.ClassName("ahT6S"));
-				DD.working = "No";
-			}
-			catch
-			{
-				try
-				{
-					IWebElement Error1 = DD.YTDriver.FindElement(By.ClassName("glT6eb"));
-					DD.working = "No";
-				}
-				catch
-				{
-					DD.working = "Working";
-				}
-			}
-
-			Thread.Sleep(500);
-			SetTokens();
-
-			return true;
-
-
-
-		}
-
-
-
-
-
-
-
-		public void ChangeAccount()
-		{
-			//Войти в акк
-			YTClass DD = null;
-
-			foreach(YTClass YTC in YTDrivers)
-			{
-				if(YTC.Replies == 0)
-				{
-					DD = YTC;
-					break;
-				}
-			}
-
-			if(DD == null)
-			{
-				return;
-			}
-
-
-		
-			if(DD.YTDriver != null)
-			{
-				DD.YTDriver.Quit();
-
-			}
-
-		
-
-			
-				DD.YTDriver = new ChromeDriver();
-				DD.YTDriver.Navigate().GoToUrl("https://accounts.google.com/v3/signin/identifier?dsh=S2047072606%3A1683301289488608&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dru%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252F&ec=65620&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=ru&ifkv=Af_xneEq9uv5Q25YFpX_LHLrAVfg_vTq1qnBk1lKtXWIA2VDPXvnRE9uT5g-fnnTfVyPHPE1aRfTzw&passive=true&service=youtube&uilel=3");
-
-
-				Thread.Sleep(5000);
-
-				IWebElement LoginArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-				LoginArea.SendKeys(DD.Log);
-
-				IWebElement ButtonAreaLogin = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-				ButtonAreaLogin.Click();
-
-				Thread.Sleep(5000);
-
-
-				IWebElement PassArea = DD.YTDriver.FindElement(By.ClassName("zHQkBf"));
-				PassArea.SendKeys(DD.pas);
-
-				IWebElement ButtonAreaPass = DD.YTDriver.FindElement(By.ClassName("VfPpkd-LgbsSe-OWXEXe-k8QpJ"));
-				ButtonAreaPass.Click();
-				Thread.Sleep(5000);
-
-			
-			
-
-
-			MakeSpam(DD);
-
-		}
-
-		public void MakeSpam(YTClass DD)
-		{
-			DD.YTDriver.Navigate().GoToUrl(VideoLink);
-
-			Thread.Sleep(5000);
-
-		/*	
-
-			while(DD.Replies < 98)
-			{
-
-				((IJavaScriptExecutor)DD.YTDriver).ExecuteScript("window.scrollTo(0, 999999999999999999999)");
-
-
-				Thread.Sleep(2000);
-			}
-*/
-			
-
-
-
-			/*File.WriteAllText(@"Discord/" + _ServerName + ".txt", "");
-
-			using (StreamWriter writer = new StreamWriter(@"Discord/" + _ServerName + ".txt"))
-			{
-				foreach (string line in DiscordMembers)
-				{
-					writer.WriteLine(line);
-				}
-			}*/
-		}
-
-
-		private void button10_Click(object sender, EventArgs e)
-		{
-			// Сделать токены
-			try
-			{
-				YouTubeTokens = new List<string>();
-
-
-				using (StreamReader reader = new StreamReader(@"YouTube/Tokens.txt"))
-				{
-					string line;
-					/*while ((line = reader.ReadLine()) != null)
-					{
-						string logpas = line.Split("|")[1];
-						string result = logpas.Replace("\"", "");
-						result = logpas.Replace(" ", "");
-						result += ":Kirilllachaev:Kirilllachaev:No:0";
-						YouTubeTokens.Add(result);
-					}*/
-
-					while ((line = reader.ReadLine()) != null)
-					{
-						string log = line.Split(":")[0];
-						string pas = line.Split(":")[1];
-						string result = log + ":" + pas;
-						result = result.Replace(" ", "");
-						result += ":Kirilllachaev:Kirilllachaev:No:0";
-						YouTubeTokens.Add(result);
-					}
-				}
-
-
-
-
-
-
-				File.WriteAllText(@"YouTube/Tokens.txt", "");
-
-				using (StreamWriter writer = new StreamWriter(@"YouTube/Tokens.txt"))
-				{
-					foreach (string line in YouTubeTokens)
-					{
-
-						writer.WriteLine(line.Replace("\"", "").Replace(" ", ""));
-					}
-				}
-			}
-			catch
-			{
-				MessageBox.Show("Не подходящий формат");
-			}
-
-
-		}
-
-		#endregion
-
-
-
-
-		#region Discord
-
-		public List<string> DiscordMembers;
-		public List<string> DiscordTokens;
-
-		public string _ServerName = "";
-
-		string MessageText = "";
-		string MessageText2 = "";
-
-		public List<DiscordDriver> DiscordDrivers;
-
-
-		public int Done;
-
-
-	
-
-
-
-
-
-
-		public void getMembers()
-		{
-			DiscordMembers = new List<string>();
-			Done = 0;
-			using (StreamReader reader = new StreamReader(@"Discord/" + _ServerName + ".txt"))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					DiscordMembers.Add(line);
-					if (line.Contains("☻"))
-					{
-						Done += 1;
-					}
-				}
-			}
-		
-		}
-
-
-		public void MakeDD()
-		{
-			int _num = DiscordDrivers.Count;
-			DiscordDriver DD = new DiscordDriver();
-			DiscordDrivers.Add(DD);
-
-
-			if (_num != 0)
-			{
-				Thread.Sleep(30000 * _num); 
-			}
-
-
-			// Дать логин пароль
-		
-			DD.Log = DiscordTokens[_num].Split(':')[0];
-			DD.pas = DiscordTokens[_num].Split(':')[1];
-
-			try
-			{
-				MakeLogin(DD, 1);
-				Thread.Sleep(5000);
-			}
-			catch
-			{
-				try
-				{
-					MakeLogin(DD, 2);
-					Thread.Sleep(10000);
-				}
-				catch
-				{
-					MakeLogin(DD, 3);
-					Thread.Sleep(15000);
-				}
-			}
-		
-
-			DD.DiscrodSpamThread = new Thread(() => DiscordSpam(DD));
-			DD.DiscrodSpamThread.Start();
-
-
-		}
-
-		public void MakeLogin(DiscordDriver DD, int mult) 
-		{
-			DD.DiscrodDriver = new ChromeDriver();
-			DD.DiscrodDriver.Navigate().GoToUrl("https://discord.com/login");
-
-			Thread.Sleep(5000 * mult);
-
-
-			IWebElement LoginArea = DD.DiscrodDriver.FindElement(By.CssSelector("[aria-label='Адрес электронной почты или номер телефона']"));
-			IWebElement PassArea = DD.DiscrodDriver.FindElement(By.CssSelector("[aria-label='Пароль']"));
-			LoginArea.SendKeys(DD.Log);
-			PassArea.SendKeys(DD.pas);
-
-			Thread.Sleep(2000);
-
-			IWebElement ButtonArea = DD.DiscrodDriver.FindElement(By.ClassName("button-1cRKG6"));
-
-			ButtonArea.Click();
-		}
-
-		public void DiscordSpam(DiscordDriver drive)
-		{
-
-
-			for (int i = 1; i < DiscordMembers.Count; i++)
-			{
-				getMembers();
-
-
-				if (DiscordMembers[i].Contains("☻"))
-				{
-					
-				}
-				else
-				{
-					try
-					{
-						MakeSpamMessage(drive, i, 1);
-					}
-					catch
-					{
-						try
-						{
-							Thread.Sleep(5000);
-							MakeSpamMessage(drive, i, 2);
-						}
-						catch
-						{
-							Thread.Sleep(5000);
-							MakeSpamMessage(drive, i, 3);
-						}
-						
-					}
-					
-				}
-
-				
-
-				
-
-
-			}
-		}
-
-		public void MakeSpamMessage(DiscordDriver drive, int i, int mult)
-		{
-			drive.DiscrodDriver.Navigate().GoToUrl("https://discord.com/users/" + DiscordMembers[i]);
-			Thread.Sleep(5000* mult);
-
-
-			IWebElement ButtonParent = drive.DiscrodDriver.FindElement(By.ClassName("relationshipButtons-3ByBpj"));
-			IWebElement ButtonArea = ButtonParent.FindElement(By.CssSelector("[role = 'button']"));
-
-			ButtonArea.Click();
-			Thread.Sleep(1000);
-
-
-			IWebElement ButtonMessage = drive.DiscrodDriver.FindElement(By.Id("user-profile-actions-user-message"));
-			ButtonMessage.Click();
-
-			Thread.Sleep(5000 * mult);
-
-			IWebElement TextParent = drive.DiscrodDriver.FindElement(By.ClassName("emptyText-1o0WH_"));
-			IWebElement TextArea = TextParent.FindElement(By.CssSelector("span"));
-
-			if (i % 2 == 0)
-			{
-				TextArea.SendKeys(MessageText);
-			}
-			else
-			{
-				TextArea.SendKeys(MessageText2);
-			}
-
-
-			Thread.Sleep(1000);
-
-			Actions actions = new Actions(drive.DiscrodDriver);
-			actions.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();
-
-			DiscordMembers[i] += "☻";
-
-			File.WriteAllText(@"Discord/" + _ServerName + ".txt", "");
-
-			using (StreamWriter writer = new StreamWriter(@"Discord/" + _ServerName + ".txt"))
-			{
-				foreach (string line in DiscordMembers)
-				{
-					writer.WriteLine(line);
-				}
-			}
-
-
-
-			drive.Seconds = 661;
-			Thread.Sleep(661000);
-		}
-
 
 
 
@@ -1306,6 +839,7 @@ namespace SteamReviews
 
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			if(driver != null)
 			driver.Quit();
 		
 			Application.Exit();
@@ -1365,6 +899,16 @@ namespace SteamReviews
 		}
 
 		private void textBox4_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBox5_TextChanged(object sender, EventArgs e)
 		{
 
 		}

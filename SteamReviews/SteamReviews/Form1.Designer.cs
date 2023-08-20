@@ -55,6 +55,8 @@ namespace SteamReviews
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.textBox5 = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -310,18 +312,40 @@ namespace SteamReviews
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(617, 84);
+			this.textBox4.Location = new System.Drawing.Point(755, 53);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(132, 23);
 			this.textBox4.TabIndex = 45;
 			this.textBox4.Text = "0";
 			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(224, 35);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(96, 19);
+			this.checkBox1.TabIndex = 46;
+			this.checkBox1.Text = "Продолжить";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(39, 24);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(132, 23);
+			this.textBox5.TabIndex = 47;
+			this.textBox5.Text = "146.247.113.250:59100";
+			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(946, 450);
+			this.Controls.Add(this.textBox5);
+			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.textBox4);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.button7);
@@ -379,6 +403,8 @@ namespace SteamReviews
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.TextBox textBox5;
 	}
 }
 

@@ -45,5 +45,5 @@ C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\Stea
 C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\ref\SteamReviews.dll
 C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.pdb
 C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.genruntimeconfig.cache
-C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.AssemblyReference.cache
 C:\Projects\SteamReviews\SteamReviews\SteamReviews\bin\Debug\net5.0-windows\Microsoft.Edge.SeleniumTools.dll
+C:\Projects\SteamReviews\SteamReviews\SteamReviews\obj\Debug\net5.0-windows\SteamReviews.csproj.AssemblyReference.cache
