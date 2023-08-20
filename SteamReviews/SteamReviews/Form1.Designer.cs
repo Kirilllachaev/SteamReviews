@@ -54,6 +54,7 @@ namespace SteamReviews
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.textBox4 = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -307,11 +308,21 @@ namespace SteamReviews
 			this.Column4.HeaderText = "Closed";
 			this.Column4.Name = "Column4";
 			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(617, 84);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(132, 23);
+			this.textBox4.TabIndex = 45;
+			this.textBox4.Text = "0";
+			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(946, 450);
+			this.Controls.Add(this.textBox4);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.button7);
 			this.Controls.Add(this.label7);
@@ -367,6 +378,7 @@ namespace SteamReviews
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+		private System.Windows.Forms.TextBox textBox4;
 	}
 }
 

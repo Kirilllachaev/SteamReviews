@@ -44,6 +44,7 @@ namespace SteamReviews
 			InitializeComponent();
 
 			selectedLanguage = comboBox1.Text;
+			SpamerNumber = Int32.Parse(textBox4.Text);
 
 
 
@@ -109,10 +110,14 @@ namespace SteamReviews
 		Thread SpamThread = null;
 
 		public int pageNumber = 0;
+		public int SpamerNumber = 0;
 
 		public List<string> Alllinks = new List<string>();
 
 		public string selectedLanguage = "all";
+
+		public string[] SpamNames = { "Bee Island", "Long Way", "Don Duality", "Sunkenland", "Absence of Light" };
+		public string[] SpamLinks = { "Bee Island", "Long Way", "Don Duality", "Sunkenland", "Absence of Light" };
 
 
 		public string gameName = "";
@@ -124,6 +129,8 @@ namespace SteamReviews
 
 		public int allLinkCount = 0;
 		public GamePage gamePage;
+
+
 
 
 
@@ -1353,6 +1360,11 @@ namespace SteamReviews
 		}
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void textBox4_TextChanged(object sender, EventArgs e)
 		{
 
 		}
