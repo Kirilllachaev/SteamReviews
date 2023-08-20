@@ -132,6 +132,7 @@ namespace SteamReviews
 		public bool ContinueSbor = false;
 
 		public string DriverProxy;
+		public bool UseProxy;
 
 
 
@@ -149,17 +150,26 @@ namespace SteamReviews
 			SpamerNumber = Int32.Parse(textBox4.Text);
 
 			DriverProxy = textBox5.Text;
+			UseProxy = checkBox2.Checked;
 
-			ChromeOptions options = new ChromeOptions();
-			Proxy proxy = new Proxy();
-			proxy.Kind = ProxyKind.Manual;
-			proxy.HttpProxy = DriverProxy;
-			proxy.SslProxy = DriverProxy;
+			if (UseProxy)
+			{
+				ChromeOptions options = new ChromeOptions();
+				Proxy proxy = new Proxy();
+				proxy.Kind = ProxyKind.Manual;
+				proxy.HttpProxy = DriverProxy;
+				proxy.SslProxy = DriverProxy;
 
-			// Назначение прокси-настроек объекту опций
-			options.Proxy = proxy;
+				// Назначение прокси-настроек объекту опций
+				options.Proxy = proxy;
 
-			driver = new ChromeDriver(options);
+				driver = new ChromeDriver(options);
+			}
+			else
+			{
+				driver = new ChromeDriver();
+			}
+			
 			driver.Navigate().GoToUrl("https://steamcommunity.com/login/home/");
 
 			gameName = textBox2.Text;
@@ -909,6 +919,11 @@ namespace SteamReviews
 		}
 
 		private void textBox5_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void checkBox2_CheckedChanged(object sender, EventArgs e)
 		{
 
 		}
