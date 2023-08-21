@@ -46,8 +46,57 @@ namespace SteamReviews
 			selectedLanguage = comboBox1.Text;
 
 
-			FreshTable();
-			
+
+			string[] subdirectories = Directory.GetDirectories(@"Steam/");
+
+			foreach(string Dir in subdirectories)
+			{
+				string mdir = Dir.Split("/")[1];
+				
+				int count = 0;
+				int spammed = 0;
+				int closed = 0;
+
+				try
+				{
+					string[] txtFiles = Directory.GetFiles(@"Steam/" + mdir, "*.txt");
+
+					foreach (string filePath in txtFiles)
+					{
+						string fileName = Path.GetFileName(filePath);
+						ReviewLang RL = new ReviewLang();
+						RL.lang = fileName.Split('_')[1].Split('.')[0];
+						RL.Links = new List<string>();
+
+						string[] lines = File.ReadAllLines(filePath);
+
+						foreach (string line in lines)
+						{
+
+							count += 1;
+							if (line.Contains("?donsk"))
+							{
+								spammed += 1;
+							}
+							if (line.Contains("?closed"))
+							{
+								closed += 1;
+							}
+							RL.Links.Add(line);
+						}
+
+					}
+					
+				}
+				catch
+				{
+
+				}
+
+
+				string[] row = { mdir, count.ToString(), spammed.ToString(), closed.ToString() };
+				dataGridView1.Rows.Add(row);
+			}
 
 		}
 
@@ -91,59 +140,7 @@ namespace SteamReviews
 
 		#region Steam
 
-		public void FreshTable()
-		{
-			string[] subdirectories = Directory.GetDirectories(@"Steam/");
-
-			foreach (string Dir in subdirectories)
-			{
-				string mdir = Dir.Split("/")[1];
-
-				int count = 0;
-				int spammed = 0;
-				int closed = 0;
-
-				try
-				{
-					string[] txtFiles = Directory.GetFiles(@"Steam/" + mdir, "*.txt");
-
-					foreach (string filePath in txtFiles)
-					{
-						string fileName = Path.GetFileName(filePath);
-						ReviewLang RL = new ReviewLang();
-						RL.lang = fileName.Split('_')[1].Split('.')[0];
-						RL.Links = new List<string>();
-
-						string[] lines = File.ReadAllLines(filePath);
-
-						foreach (string line in lines)
-						{
-
-							count += 1;
-							if (line.Contains("?donsk"))
-							{
-								spammed += 1;
-							}
-							if (line.Contains("?closed"))
-							{
-								closed += 1;
-							}
-							RL.Links.Add(line);
-						}
-
-					}
-
-				}
-				catch
-				{
-
-				}
-
-
-				string[] row = { mdir, count.ToString(), spammed.ToString(), closed.ToString() };
-				dataGridView1.Rows.Add(row);
-			}
-		}
+		
 
 		private void button1_Click_1(object sender, EventArgs e)
 		{
@@ -776,8 +773,8 @@ namespace SteamReviews
 					File.WriteAllLines(@"Steam/" + steamacc + ".txt", linecop);
 				}
 
-
-
+				
+			
 
 			}
 
@@ -808,8 +805,6 @@ namespace SteamReviews
 
 			pageNumber = 0;
 			Alllinks.Clear();
-
-			FreshTable(); 
 
 		}
 
