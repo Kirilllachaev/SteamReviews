@@ -50,14 +50,15 @@ namespace SteamReviews
 			this.label7 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Worked = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -279,37 +280,15 @@ namespace SteamReviews
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
+            this.Worked,
             this.Column3,
             this.Column4});
 			this.dataGridView1.Location = new System.Drawing.Point(341, 151);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowTemplate.Height = 25;
-			this.dataGridView1.Size = new System.Drawing.Size(569, 276);
+			this.dataGridView1.Size = new System.Drawing.Size(658, 276);
 			this.dataGridView1.TabIndex = 44;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-			// 
-			// Column1
-			// 
-			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.Column1.HeaderText = "Game";
-			this.Column1.MinimumWidth = 200;
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 200;
-			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Positive";
-			this.Column2.Name = "Column2";
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "Spammed";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Closed";
-			this.Column4.Name = "Column4";
 			// 
 			// textBox4
 			// 
@@ -353,11 +332,39 @@ namespace SteamReviews
 			this.checkBox2.UseVisualStyleBackColor = true;
 			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
+			// Column1
+			// 
+			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.Column1.HeaderText = "Game";
+			this.Column1.MinimumWidth = 200;
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 200;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Positive";
+			this.Column2.Name = "Column2";
+			// 
+			// Worked
+			// 
+			this.Worked.HeaderText = "Worked";
+			this.Worked.Name = "Worked";
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Spammed";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Closed";
+			this.Column4.Name = "Column4";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(946, 450);
+			this.ClientSize = new System.Drawing.Size(1189, 450);
 			this.Controls.Add(this.checkBox2);
 			this.Controls.Add(this.textBox5);
 			this.Controls.Add(this.checkBox1);
@@ -413,14 +420,15 @@ namespace SteamReviews
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Worked;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 	}
 }
 

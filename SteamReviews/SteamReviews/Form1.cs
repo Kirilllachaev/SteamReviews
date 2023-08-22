@@ -94,7 +94,7 @@ namespace SteamReviews
 				}
 
 
-				string[] row = { mdir, count.ToString(), spammed.ToString(), closed.ToString() };
+				string[] row = { mdir, count.ToString(), (spammed+closed).ToString(),spammed.ToString(), closed.ToString() };
 				dataGridView1.Rows.Add(row);
 			}
 
