@@ -427,11 +427,9 @@ namespace SteamReviews
 							{
 								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
 								string text = messages[RL.lang];
-								text += SpamNames[SpamerNumber];
-								text += "\n";
-								text += SpamLinks[SpamerNumber];
+								
 
-								Random random = new Random();
+								/*Random random = new Random();
 								int randomIndex = random.Next(6 + ((SpamerNumber+1) * 2)); // 6 options
 
 								switch (randomIndex)
@@ -454,7 +452,11 @@ namespace SteamReviews
 									case 5:
 										text = text.Replace("!", "!!");
 										break;
-								}
+								}*/
+
+								text += SpamNames[SpamerNumber];
+								text += "\n";
+								text += SpamLinks[SpamerNumber];
 
 								textarea.SendKeys(text);
 								Thread.Sleep(1000);
