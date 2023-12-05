@@ -50,15 +50,15 @@ namespace SteamReviews
 			this.label7 = new System.Windows.Forms.Label();
 			this.button7 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Worked = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -290,48 +290,6 @@ namespace SteamReviews
 			this.dataGridView1.TabIndex = 44;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(755, 53);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(132, 23);
-			this.textBox4.TabIndex = 45;
-			this.textBox4.Text = "0";
-			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(224, 35);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(96, 19);
-			this.checkBox1.TabIndex = 46;
-			this.checkBox1.Text = "Продолжить";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
-			// textBox5
-			// 
-			this.textBox5.Location = new System.Drawing.Point(39, 24);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(132, 23);
-			this.textBox5.TabIndex = 47;
-			this.textBox5.Text = "146.247.113.250:59100";
-			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(224, 10);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(68, 19);
-			this.checkBox2.TabIndex = 48;
-			this.checkBox2.Text = "Прокси";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-			// 
 			// Column1
 			// 
 			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -359,6 +317,48 @@ namespace SteamReviews
 			// 
 			this.Column4.HeaderText = "Closed";
 			this.Column4.Name = "Column4";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(755, 53);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(132, 23);
+			this.textBox4.TabIndex = 45;
+			this.textBox4.Text = "0";
+			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(224, 35);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(96, 19);
+			this.checkBox1.TabIndex = 46;
+			this.checkBox1.Text = "Продолжить";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(39, 24);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(132, 23);
+			this.textBox5.TabIndex = 47;
+			this.textBox5.Text = "82.211.9.190:59100";
+			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Checked = true;
+			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox2.Location = new System.Drawing.Point(224, 10);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(68, 19);
+			this.checkBox2.TabIndex = 48;
+			this.checkBox2.Text = "Прокси";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// Form1
 			// 
