@@ -168,7 +168,6 @@ namespace SteamReviews
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(132, 23);
 			this.textBox1.TabIndex = 9;
-			this.textBox1.Text = "https://steamcommunity.com/app/1743830/reviews/";
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
@@ -344,7 +343,7 @@ namespace SteamReviews
 			this.textBox5.Name = "textBox5";
 			this.textBox5.Size = new System.Drawing.Size(132, 23);
 			this.textBox5.TabIndex = 47;
-			this.textBox5.Text = "82.211.9.190:59100";
+			this.textBox5.Text = "82.211.9.90:59100";
 			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
 			// 
 			// checkBox2

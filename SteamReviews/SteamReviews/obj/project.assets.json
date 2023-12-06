@@ -23,7 +23,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Selenium.WebDriver/4.11.0": {
+      "Selenium.WebDriver/4.10.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
@@ -83,10 +83,10 @@
         "packageIcon.png"
       ]
     },
-    "Selenium.WebDriver/4.11.0": {
-      "sha512": "V8o+Nvi9/3Ix12ZzMGg+fI7sfu+HrflZkMGq8Orr+j0INbfpEEyM6KR9oaaHlm0WUXcn7dTYwyWrJxYsi6eniw==",
+    "Selenium.WebDriver/4.10.0": {
+      "sha512": "MvgUaxeLqLOtRnNS+kHzqfOhLO+7ZEukhQMuS7ksQQPA2tGNXWhrRN3PTkTGuKhuodd9JkoZ4eCKVEQF6xPdmA==",
       "type": "package",
-      "path": "selenium.webdriver/4.11.0",
+      "path": "selenium.webdriver/4.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -104,7 +104,7 @@
         "manager/linux/selenium-manager",
         "manager/macos/selenium-manager",
         "manager/windows/selenium-manager.exe",
-        "selenium.webdriver.4.11.0.nupkg.sha512",
+        "selenium.webdriver.4.10.0.nupkg.sha512",
         "selenium.webdriver.nuspec"
       ]
     }
@@ -112,7 +112,7 @@
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
       "Microsoft.Edge.SeleniumTools >= 3.141.3",
-      "Selenium.WebDriver >= 4.11.0"
+      "Selenium.WebDriver >= 4.10.0"
     ]
   },
   "packageFolders": {
@@ -160,7 +160,7 @@
           },
           "Selenium.WebDriver": {
             "target": "Package",
-            "version": "[4.11.0, )"
+            "version": "[4.10.0, )"
           }
         },
         "imports": [
@@ -190,7 +190,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Edge.SeleniumTools 3.141.3 requires Selenium.WebDriver (= 3.141.0) but version Selenium.WebDriver 4.11.0 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Microsoft.Edge.SeleniumTools 3.141.3 requires Selenium.WebDriver (= 3.141.0) but version Selenium.WebDriver 4.10.0 was resolved.",
       "libraryId": "Selenium.WebDriver",
       "targetGraphs": [
         "net5.0-windows7.0"
