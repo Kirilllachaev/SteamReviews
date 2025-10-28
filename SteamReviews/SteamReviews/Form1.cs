@@ -378,7 +378,7 @@ namespace SteamReviews
 		Dictionary<string, string> messages = new Dictionary<string, string>
 		{
 			{ "italian", "Ciao!\nStiamo facendo un gioco simile e potrebbe piacerti!\nPer favore, dai un'occhiata alla pagina del nostro gioco.\nSe ti piace, aggiungi il gioco alla tua lista dei desideri, ciò ci aiuterà nella promozione!\nScusaci per il disturbo e grazie mille!\n\nGioco:" },
-			{ "polish", "Cześć!\nRobimy podobną grę, która może ci się spodobać!\nProszę, sprawdź stronę naszej gry.\nJeśli ci się podoba, dodaj ją do listy życzeń, pomoże nam to w promocji!\nPrzepraszamy za kłopot i dziękujemy!\n\nGra:" },
+			{ "polish", "https://us06web.zoom.us/rec/share/Xx0gYVr_LWD-lo6oUaFj6HlJrGqAinxd4ljQ37kbkXFZ57JKSVY4FDq7mDLCeFok.IwrNADG6X1p2KSr_?startTime=1702649447000!\nRobimy podobną grę, która może ci się spodobać!\nProszę, sprawdź stronę naszej gry.\nJeśli ci się podoba, dodaj ją do listy życzeń, pomoże nam to w promocji!\nPrzepraszamy za kłopot i dziękujemy!\n\nGra:" },
 			{ "schinese", "你好！\n我们正在制作一款类似的游戏，也许你会喜欢！\n请查看我们游戏的页面。\n如果喜欢，请将游戏添加到愿望列表，这将有助于推广！\n为打扰你感到抱歉，非常感谢！\n\n游戏：" },
 			{ "tchinese", "你好！\n我們正在製作一款類似的遊戲，也許你會喜歡！\n請查看我們遊戲的頁面。\n如果喜歡，請將遊戲添加到願望列表，這將有助於推廣！\n為打擾你感到抱歉，非常感謝！\n\n遊戲：" },
 			{ "japanese", "こんにちは！\n似たようなゲームを作っていて、もしかしたら気に入っていただけるかもしれません！\n当社のゲームのページをご覧ください。\n気に入った場合は、ゲームをウィッシュリストに追加していただけると、プロモーションに役立ちます！\nご迷惑をおかけして申し訳ありません、どうもありがとうございます！\n\nゲーム：" },
@@ -423,42 +423,22 @@ namespace SteamReviews
 
 							Thread.Sleep(1000);
 
+							
 							try
 							{
-								IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
+								//IWebElement textarea = driver.FindElement(By.CssSelector("[placeholder='Оставить комментарий']"));
+								IWebElement textarea = driver.FindElement(By.ClassName("commentthread_textarea"));
 								string text = messages[RL.lang];
-								
-
-								/*Random random = new Random();
-								int randomIndex = random.Next(6 + ((SpamerNumber+1) * 2)); // 6 options
-
-								switch (randomIndex)
-								{
-									case 0:
-										text = text.Replace(".", ";");
-										break;
-									case 1:
-										text = text.Replace(".", ",");
-										break;
-									case 2:
-										text = text.Replace(",", ";");
-										break;
-									case 3:
-										text = text.Replace(",", ".");
-										break;
-									case 4:
-										text = text.Replace("!", "");
-										break;
-									case 5:
-										text = text.Replace("!", "!!");
-										break;
-								}*/
 
 								text += SpamNames[SpamerNumber];
 								text += "\n";
 								text += SpamLinks[SpamerNumber];
 
+
 								textarea.SendKeys(text);
+
+
+
 								Thread.Sleep(1000);
 								IWebElement greenButton = driver.FindElement(By.ClassName("btn_green_white_innerfade"));
 								greenButton.Click();
@@ -470,7 +450,8 @@ namespace SteamReviews
 								if (errorText == "Простите, что-то пошло не так: вы слишком часто отправляете сообщения, передохните немного")
 								{
 
-									MessageBox.Show("Сообщение не отправлено. Аккаунт или Прокси в муте", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);                               }
+									MessageBox.Show("Сообщение не отправлено. Аккаунт или Прокси в муте", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+								}
 								else
 								{
 								

@@ -136,6 +136,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -190,7 +191,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Edge.SeleniumTools 3.141.3 requires Selenium.WebDriver (= 3.141.0) but version Selenium.WebDriver 4.10.0 was resolved.",
+      "message": "Версия обнаруженного пакета нарушает ограничение зависимости: Microsoft.Edge.SeleniumTools 3.141.3 требуется Selenium.WebDriver (= 3.141.0), но в результате разрешения получена версия Selenium.WebDriver 4.10.0.",
       "libraryId": "Selenium.WebDriver",
       "targetGraphs": [
         "net5.0-windows7.0"

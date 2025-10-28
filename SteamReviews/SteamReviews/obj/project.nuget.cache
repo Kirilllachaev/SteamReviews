@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LslHcfOiBdHppfu7xkqJouHzoI+4LzlbgXfg0G8hXTkIi8knC0IULh8fHtRl6nSDjVeo6eG4YbumGgaU5RXB8w==",
+  "dgSpecHash": "Gpuo6bXSjiikdwk9VaOAZGZNf8KFBjVbyGQI14RMF/XBuRtcEjAj5fLQE+aW4rUExvZ5Q5z1v3mMZBP8T+ZRRA==",
   "success": true,
   "projectFilePath": "C:\\Projects\\SteamReviews\\SteamReviews\\SteamReviews\\SteamReviews.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Edge.SeleniumTools 3.141.3 requires Selenium.WebDriver (= 3.141.0) but version Selenium.WebDriver 4.10.0 was resolved.",
+      "message": "Версия обнаруженного пакета нарушает ограничение зависимости: Microsoft.Edge.SeleniumTools 3.141.3 требуется Selenium.WebDriver (= 3.141.0), но в результате разрешения получена версия Selenium.WebDriver 4.10.0.",
       "libraryId": "Selenium.WebDriver",
       "targetGraphs": [
         "net5.0-windows7.0"
